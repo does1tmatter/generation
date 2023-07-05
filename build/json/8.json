@@ -1,0 +1,57 @@
+{
+  "name": "Your Collection #8",
+  "description": "Remember to replace this description",
+  "image": "ipfs://TESTING/8.png",
+  "dna": "77253d6cc1c0cd52e5e7010d413b4ad251a7eaa0",
+  "id": 8,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Balcony"
+    },
+    {
+      "trait_type": "Couches",
+      "value": "Copy"
+    },
+    {
+      "trait_type": "Body",
+      "value": "M 1"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Scar"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Heh"
+    },
+    {
+      "trait_type": "Nose",
+      "value": "Bling Bling"
+    },
+    {
+      "trait_type": "Shirts",
+      "value": "Army"
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "Manager"
+    },
+    {
+      "trait_type": "Slippers",
+      "value": "Cookie"
+    },
+    {
+      "trait_type": "Mask",
+      "value": "Knight"
+    },
+    {
+      "trait_type": "Food",
+      "value": "Doughnot"
+    },
+    {
+      "trait_type": "Misc",
+      "value": "ETH 2"
+    }
+  ]
+}

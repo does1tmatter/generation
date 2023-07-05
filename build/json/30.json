@@ -1,0 +1,57 @@
+{
+  "name": "Your Collection #30",
+  "description": "Remember to replace this description",
+  "image": "ipfs://TESTING/30.png",
+  "dna": "278173a3ed616d3ab8d27742caf32014914c6024",
+  "id": 30,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Exorcism"
+    },
+    {
+      "trait_type": "Couches",
+      "value": "Money"
+    },
+    {
+      "trait_type": "Body",
+      "value": "M 1"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Slanted"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Meh"
+    },
+    {
+      "trait_type": "Nose",
+      "value": "Hook"
+    },
+    {
+      "trait_type": "Shirts",
+      "value": "Coat"
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "Kimono Red"
+    },
+    {
+      "trait_type": "Slippers",
+      "value": "Giraffe"
+    },
+    {
+      "trait_type": "Mask",
+      "value": "Knight"
+    },
+    {
+      "trait_type": "Food",
+      "value": "D O P E"
+    },
+    {
+      "trait_type": "Misc",
+      "value": "Cigarette"
+    }
+  ]
+}

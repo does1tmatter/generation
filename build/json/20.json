@@ -1,0 +1,57 @@
+{
+  "name": "Your Collection #20",
+  "description": "Remember to replace this description",
+  "image": "ipfs://TESTING/20.png",
+  "dna": "3cb5b173978bd11ad03f3fec52f9bd95fc73d231",
+  "id": 20,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Bedroom"
+    },
+    {
+      "trait_type": "Couches",
+      "value": "Holograph"
+    },
+    {
+      "trait_type": "Body",
+      "value": "M 1"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Slanted"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Smile"
+    },
+    {
+      "trait_type": "Nose",
+      "value": "Little"
+    },
+    {
+      "trait_type": "Shirts",
+      "value": "Army"
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "Cowboy Brown"
+    },
+    {
+      "trait_type": "Slippers",
+      "value": "Inhaler"
+    },
+    {
+      "trait_type": "Mask",
+      "value": "None :3"
+    },
+    {
+      "trait_type": "Food",
+      "value": "Fries"
+    },
+    {
+      "trait_type": "Misc",
+      "value": "Dumbbell"
+    }
+  ]
+}

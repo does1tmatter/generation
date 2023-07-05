@@ -1,0 +1,53 @@
+{
+  "name": "Your Collection #13",
+  "description": "Remember to replace this description",
+  "image": "ipfs://TESTING/13.png",
+  "dna": "62f34e34f69319ffa5819cfc36505d56c609649e",
+  "id": 13,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Balcony"
+    },
+    {
+      "trait_type": "Couches",
+      "value": "Kangaroo"
+    },
+    {
+      "trait_type": "Body",
+      "value": "M 2"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Illusion"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Heh"
+    },
+    {
+      "trait_type": "Nose",
+      "value": "BTC"
+    },
+    {
+      "trait_type": "Shirts",
+      "value": "Army"
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "Elf Green"
+    },
+    {
+      "trait_type": "Slippers",
+      "value": "Cookie"
+    },
+    {
+      "trait_type": "Food",
+      "value": "Cupcake"
+    },
+    {
+      "trait_type": "Misc",
+      "value": "Pipe"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "name": "Your Collection #28",
+  "description": "Remember to replace this description",
+  "image": "ipfs://TESTING/28.png",
+  "dna": "c1cd717fb0b157e9169d93b3fd7b90e72517fe2d",
+  "id": 28,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Kitchen"
+    },
+    {
+      "trait_type": "Couches",
+      "value": "Rubik"
+    },
+    {
+      "trait_type": "Body",
+      "value": "M 1"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Green"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": ":3"
+    },
+    {
+      "trait_type": "Nose",
+      "value": "Little"
+    },
+    {
+      "trait_type": "Shirts",
+      "value": "Coat"
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "Barbarian"
+    },
+    {
+      "trait_type": "Mask",
+      "value": "Greek Marble"
+    },
+    {
+      "trait_type": "Food",
+      "value": "Gõla"
+    },
+    {
+      "trait_type": "Misc",
+      "value": "Remote Controller"
+    }
+  ]
+}

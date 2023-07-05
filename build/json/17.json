@@ -1,0 +1,53 @@
+{
+  "name": "Your Collection #17",
+  "description": "Remember to replace this description",
+  "image": "ipfs://TESTING/17.png",
+  "dna": "1d6b5460fdfa0d9fd65193af2f6876a898e306b5",
+  "id": 17,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Balcony"
+    },
+    {
+      "trait_type": "Couches",
+      "value": "Rubik"
+    },
+    {
+      "trait_type": "Body",
+      "value": "M 1"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Illuminati"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Meh"
+    },
+    {
+      "trait_type": "Nose",
+      "value": "Hook"
+    },
+    {
+      "trait_type": "Shirts",
+      "value": "Coat"
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "Cartie Blue"
+    },
+    {
+      "trait_type": "Slippers",
+      "value": "Cookie"
+    },
+    {
+      "trait_type": "Food",
+      "value": "Empty Box"
+    },
+    {
+      "trait_type": "Misc",
+      "value": "Dumbbell"
+    }
+  ]
+}

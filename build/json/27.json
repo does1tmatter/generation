@@ -1,0 +1,57 @@
+{
+  "name": "Your Collection #27",
+  "description": "Remember to replace this description",
+  "image": "ipfs://TESTING/27.png",
+  "dna": "6eaf84a3ffaf2d9ccd668663cc36161657e910a3",
+  "id": 27,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Kitchen"
+    },
+    {
+      "trait_type": "Couches",
+      "value": "Skull Throne"
+    },
+    {
+      "trait_type": "Body",
+      "value": "M 1"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Light Brown"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Bright Smile"
+    },
+    {
+      "trait_type": "Nose",
+      "value": "Bump"
+    },
+    {
+      "trait_type": "Shirts",
+      "value": "Coat"
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "Manager"
+    },
+    {
+      "trait_type": "Slippers",
+      "value": "Elephant"
+    },
+    {
+      "trait_type": "Mask",
+      "value": "Greek Marble"
+    },
+    {
+      "trait_type": "Food",
+      "value": "Burger Box A"
+    },
+    {
+      "trait_type": "Misc",
+      "value": "Plate"
+    }
+  ]
+}

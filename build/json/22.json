@@ -1,0 +1,57 @@
+{
+  "name": "Your Collection #22",
+  "description": "Remember to replace this description",
+  "image": "ipfs://TESTING/22.png",
+  "dna": "6412d1a6d0857e03a2a1a3e829900644b917054e",
+  "id": 22,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Bedroom"
+    },
+    {
+      "trait_type": "Couches",
+      "value": "Money"
+    },
+    {
+      "trait_type": "Body",
+      "value": "M 1"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Neutral"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Bright Smile"
+    },
+    {
+      "trait_type": "Nose",
+      "value": "Bump"
+    },
+    {
+      "trait_type": "Shirts",
+      "value": "Army"
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "Manager"
+    },
+    {
+      "trait_type": "Slippers",
+      "value": "Giraffe"
+    },
+    {
+      "trait_type": "Mask",
+      "value": "Knight"
+    },
+    {
+      "trait_type": "Food",
+      "value": "Fatella"
+    },
+    {
+      "trait_type": "Misc",
+      "value": "Dumbbell"
+    }
+  ]
+}

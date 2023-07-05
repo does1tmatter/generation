@@ -1,0 +1,53 @@
+{
+  "name": "Your Collection #24",
+  "description": "Remember to replace this description",
+  "image": "ipfs://TESTING/24.png",
+  "dna": "f93541cfa3975a2bf6894a7a705479f2ec94adad",
+  "id": 24,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Bedroom"
+    },
+    {
+      "trait_type": "Couches",
+      "value": "Sponge"
+    },
+    {
+      "trait_type": "Body",
+      "value": "M 1"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Scar"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": ":3"
+    },
+    {
+      "trait_type": "Nose",
+      "value": "Bling Bling"
+    },
+    {
+      "trait_type": "Shirts",
+      "value": "Army"
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "Kimono Blue"
+    },
+    {
+      "trait_type": "Slippers",
+      "value": "Chonky Knight"
+    },
+    {
+      "trait_type": "Food",
+      "value": "Gõla"
+    },
+    {
+      "trait_type": "Misc",
+      "value": "Lightsaber"
+    }
+  ]
+}

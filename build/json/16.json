@@ -1,0 +1,53 @@
+{
+  "name": "Your Collection #16",
+  "description": "Remember to replace this description",
+  "image": "ipfs://TESTING/16.png",
+  "dna": "74d5fabffe9580d6d467b3d73d025d0322828ed9",
+  "id": 16,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Basketball Court"
+    },
+    {
+      "trait_type": "Couches",
+      "value": "Gnomes"
+    },
+    {
+      "trait_type": "Body",
+      "value": "M 2"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Illuminati"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Frog Tongue"
+    },
+    {
+      "trait_type": "Nose",
+      "value": "Bling Bling"
+    },
+    {
+      "trait_type": "Shirts",
+      "value": "Army"
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "Manager"
+    },
+    {
+      "trait_type": "Slippers",
+      "value": "Cookie"
+    },
+    {
+      "trait_type": "Food",
+      "value": "Ice Cream 1"
+    },
+    {
+      "trait_type": "Misc",
+      "value": "Cigarette"
+    }
+  ]
+}

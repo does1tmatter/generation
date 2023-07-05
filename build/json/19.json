@@ -1,0 +1,53 @@
+{
+  "name": "Your Collection #19",
+  "description": "Remember to replace this description",
+  "image": "ipfs://TESTING/19.png",
+  "dna": "867bb9cd22dc8f48acb3cc9c0405758928a60600",
+  "id": 19,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Basketball Court"
+    },
+    {
+      "trait_type": "Couches",
+      "value": "Money"
+    },
+    {
+      "trait_type": "Body",
+      "value": "M 2"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Insect"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Dollar Bill"
+    },
+    {
+      "trait_type": "Nose",
+      "value": "Pudgy"
+    },
+    {
+      "trait_type": "Shirts",
+      "value": "Army"
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "Cowboy Brown"
+    },
+    {
+      "trait_type": "Slippers",
+      "value": "Inhaler"
+    },
+    {
+      "trait_type": "Food",
+      "value": "Gõla"
+    },
+    {
+      "trait_type": "Misc",
+      "value": "Lube"
+    }
+  ]
+}

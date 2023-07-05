@@ -1,0 +1,53 @@
+{
+  "name": "Your Collection #29",
+  "description": "Remember to replace this description",
+  "image": "ipfs://TESTING/29.png",
+  "dna": "786b43b6105f6719eefa07b451ccbd3325b89a1b",
+  "id": 29,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Bedroom"
+    },
+    {
+      "trait_type": "Couches",
+      "value": "Armor"
+    },
+    {
+      "trait_type": "Body",
+      "value": "M 1"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Blue"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Lions Roar"
+    },
+    {
+      "trait_type": "Nose",
+      "value": "ETH"
+    },
+    {
+      "trait_type": "Shirts",
+      "value": "Coat"
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "Elf Green"
+    },
+    {
+      "trait_type": "Slippers",
+      "value": "Cookie"
+    },
+    {
+      "trait_type": "Food",
+      "value": "Gõla"
+    },
+    {
+      "trait_type": "Misc",
+      "value": "Remote Controller"
+    }
+  ]
+}

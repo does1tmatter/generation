@@ -1,0 +1,53 @@
+{
+  "name": "Your Collection #3",
+  "description": "Remember to replace this description",
+  "image": "ipfs://TESTING/3.png",
+  "dna": "76ae69a00defb848624e6a4bc2a44e06d06759fd",
+  "id": 3,
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Cave"
+    },
+    {
+      "trait_type": "Couches",
+      "value": "Clouds"
+    },
+    {
+      "trait_type": "Body",
+      "value": "M 2"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Light Brown"
+    },
+    {
+      "trait_type": "Mouth",
+      "value": "Bright Smile"
+    },
+    {
+      "trait_type": "Nose",
+      "value": "Neutral"
+    },
+    {
+      "trait_type": "Shirts",
+      "value": "Coat"
+    },
+    {
+      "trait_type": "Clothes",
+      "value": "Barbarian"
+    },
+    {
+      "trait_type": "Mask",
+      "value": "Greek Marble"
+    },
+    {
+      "trait_type": "Food",
+      "value": "Chips"
+    },
+    {
+      "trait_type": "Misc",
+      "value": "Tissues"
+    }
+  ]
+}
