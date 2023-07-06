@@ -46,10 +46,11 @@ const solanaMetadata = {
 // If you have selected Solana then the collection starts from 0 automatically
 const layerConfigurations = [
   {
-    growEditionSizeTo: 30,
+    growEditionSizeTo: 500,
     layersOrder: [
       { name: "Background" },
       { name: "Couch" },
+      { name: "Mascot" },
       { name: "Food" },
       { name: "Misc" },
       { name: "Body" },
@@ -65,7 +66,6 @@ const layerConfigurations = [
       { name: "Mask" },
       { name: "Eyewear" },
       { name: "Headwear" },
-      { name: "Mascot" },
     ]
   }
 ];
@@ -79,8 +79,8 @@ const shuffleLayerConfigurations = false;
 const debugLogs = false;
 
 const format = {
-  width: 512,
-  height: 512,
+  width: 1599,
+  height: 1499,
   dpi: 72,
   smoothing: false,
 };
@@ -234,27 +234,6 @@ const exceptions = {
     'Van Dyke': ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks'],
     Viking: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks'],
     Wizard: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks'],
-    'Burger Box A': ['Stacked Cups'],
-    'Burger': ['Stacked Cups'],
-    'Cheesy Potatoes': ['Stacked Cups'],
-    'Chicken': ['Stacked Cups'],
-    'Chips': ['Stacked Cups'],
-    'Cupcake': ['Stacked Cups'],
-    'D O P E': ['Stacked Cups'],
-    'Dope': ['Stacked Cups'],
-    'Doughnot': ['Stacked Cups'],
-    'Empty Box': ['Stacked Cups'],
-    'Fatella': ['Stacked Cups'],
-    'Fried Egg': ['Stacked Cups'],
-    'Fries': ['Stacked Cups'],
-    'Gola': ['Stacked Cups'],
-    'Ice Cream 1': ['Stacked Cups'],
-    'Ice Cream 2': ['Stacked Cups'],
-    'Pizza': ['Stacked Cups'],
-    'Popcorn': ['Stacked Cups'],
-    'potato_2': ['Stacked Cups'],
-    'Steak': ['Stacked Cups'],
-    'Sushi': ['Stacked Cups'],
     'M 2': ['Pinocchio'],
     'M 4': ['Pinocchio'],
     'M 5': ['Pinocchio']
@@ -275,6 +254,8 @@ const exceptions = {
     Eagle: ['Nose', 'Mask', 'Beard'],
     Toucan: ['Mouth', 'Mask', 'Beard'],
     Ottoman: ['Eyewear', 'Beard'],
+    Pig: ['Food', 'Mascot'],
+    Dumpster: ['Mascot'], 
     Party: ['Eyewear'],
     Pinocchio: ['Beard'],
     Spartan: ['Beard'],
@@ -284,10 +265,10 @@ const exceptions = {
     Doctor: ['Slippers'],
     'Bard Blue': ['Slippers', 'Food'],
     'Bard Red': ['Slippers', 'Food'],
-    Barbarian: ['Slippers'],
+    Barbarian: ['Slippers', 'Mask'],
     FMNT: ['Slippers'],
     Hippie: ['Slippers'],
-    Pig: ['Food']
+    'Stacked Cups': ['Food']
   },
   layerToLayer: {
     Clothes: ['Pants'],

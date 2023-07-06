@@ -358,7 +358,8 @@ const filterLayerExceptions = (layers, layerConfigIndex) => {
             if (exceptions.conditionalLayerToLayer[layerName].required) {
               const temp = layersSetup(layerConfigurations[layerConfigIndex].layersOrder)
               const index = layerConfigurations[layerConfigIndex].layersOrder.findIndex(obj => obj.name === exceptions.conditionalLayerToLayer[layerName].required)
-              const tempId = Number(createNamedLayer(temp[index]).split(':').shift().split('_').pop())
+              const traitRules = new Map()
+              const tempId = Number(createNamedLayer(temp[index]).split(':').shift().split('_').pop(), traitRules)
               const selectedElement = temp[index].elements.find((e) => e.id === tempId)
               const additional = constructLayerObject(temp[index], selectedElement)
 
