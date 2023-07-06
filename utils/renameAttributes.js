@@ -54,11 +54,11 @@ data.forEach((item) => {
 
 fs.writeFileSync(`${basePath}/build/json/_metadata.json`, JSON.stringify(data, null, 2));
 
-for (let i = 0; i < valueBefore.length; i++) {
-  console.log(`Updated ${valueBefore[i]} to ${valueAfter[i]}`);
-}
-for (let i = 0; i < traitTypeBefore.length; i++) {
-  console.log(`Updated ${traitTypeBefore[i]} to ${traitTypeAfter[i]}`);
-}
+console.log('Updated attributes that cannot be typed in file system (`:3`, `:|`, `Gõla`)')
 
-console.log(`Updated metadata saved in ${basePath}/build/json`)
+// for (let i = 0; i < valueBefore.length; i++) {
+//   console.log(`Updated ${valueBefore[i]} to ${valueAfter[i]}`);
+// }
+// for (let i = 0; i < traitTypeBefore.length; i++) {
+//   console.log(`Updated ${traitTypeBefore[i]} to ${traitTypeAfter[i]}`);
+// }

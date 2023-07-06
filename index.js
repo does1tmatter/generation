@@ -6,6 +6,6 @@ const { startCreating, buildSetup } = require(`${basePath}/src/main.js`);
     await buildSetup();
     await startCreating();
   } catch (error) {
-    console.log(Date.now(), error)
+    console.log(error)
   }
 })();

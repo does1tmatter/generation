@@ -287,16 +287,15 @@ const drawElement = (_renderObject, _index, _layersLen) => {
   addAttributes(_renderObject);
 };
 
-const constructLayerToDna = (_dna = "", _layers = []) => {
+const constructLayerToDna = (_dna = "", _layers = [], layerConfigIndex) => {
   let mappedDnaToLayers = _layers.map((layer, index) => {
     if (_dna.split(DNA_DELIMITER)[index] == undefined) {
       throw new Error(`Some weights in your ${layer.name} folder are either undefined or incorrect.
       NOTE: All layers must include a weight. If using 'namedWeight' system, all layers must contain NAMED weight, no numbers!`);
     }
-    let selectedElement = layer.elements.find(
+    let selectedElement = layer.elements?.find(
       (e) => e.id == cleanDna(_dna.split(DNA_DELIMITER)[index])
     );
-
     if (_dna.search(selectedElement.name) < 0) {
       throw new Error(`Some weights in your ${layer.name} folder are either undefined or incorrect.
       NOTE: All layers must include a weight. If using 'namedWeight' system, all layers must contain NAMED weight, no numbers!`);
@@ -304,23 +303,26 @@ const constructLayerToDna = (_dna = "", _layers = []) => {
 
     let variant = layer.layerVariations != undefined ? (_dna.split('&').pop()).split(DNA_DELIMITER).shift() : '';
 
-    return {
-      name: layer.name,
-      blend: layer.blend,
-      opacity: layer.opacity,
-      selectedElement: selectedElement,
-      layerVariations: layer.layerVariations,
-      variant: layer.layerVariations != undefined ? (_dna.split('&').pop()).split(DNA_DELIMITER).shift() : '',
-      ogName: layer.ogName,
-    };
+    return constructLayerObject(layer, selectedElement, variant)
   });
 
-  return filterLayerExceptions(mappedDnaToLayers);
+  return filterLayerExceptions(mappedDnaToLayers, layerConfigIndex);
 };
 
+const constructLayerObject = (layer, selectedElement, variant) => ({
+  name: layer.name,
+  blend: layer.blend,
+  opacity: layer.opacity,
+  selectedElement,
+  layerVariations: layer.layerVariations,
+  variant,
+  ogName: layer.ogName,
+})
 
-const filterLayerExceptions = (layers) => {
+
+const filterLayerExceptions = (layers, layerConfigIndex) => {
   const layersToRemove = new Set()
+  const layersToAdd = new Map()
 
   layers.forEach(layer => {
     const traitName = getTraitName(layer)
@@ -346,15 +348,25 @@ const filterLayerExceptions = (layers) => {
       })
     }
 
-    if (exceptions.conditionalLayerToLayer[layerName]) {
-      exceptions.conditionalLayerToLayer[layerName].forEach(val => {
-        layers.forEach((x, i) => {
-          if (getLayerName(x) === val) {
-            const rng = Math.round(Math.random())
-            if (rng === 1) layersToRemove.add(getLayerName(x))
-            if (rng === 0) layersToRemove.add(layerName)
+    if (Object.keys(exceptions.conditionalLayerToLayer[layerName] ?? {}).length) {
+      layers.forEach((x, i) => {
+        if (getLayerName(x) === exceptions.conditionalLayerToLayer[layerName].uncompatible) {
+          const rng = Math.round(Math.random())
+          if (rng === 1) {
+            layersToRemove.add(getLayerName(x))
+            
+            if (exceptions.conditionalLayerToLayer[layerName].required) {
+              const temp = layersSetup(layerConfigurations[layerConfigIndex].layersOrder)
+              const index = layerConfigurations[layerConfigIndex].layersOrder.findIndex(obj => obj.name === exceptions.conditionalLayerToLayer[layerName].required)
+              const tempId = Number(createNamedLayer(temp[index]).split(':').shift().split('_').pop())
+              const selectedElement = temp[index].elements.find((e) => e.id === tempId)
+              const additional = constructLayerObject(temp[index], selectedElement)
+
+              layersToAdd.set(index, additional)
+            }
           }
-        })
+          if (rng === 0) layersToRemove.add(layerName)
+        }
       })
     }
   })
@@ -364,7 +376,18 @@ const filterLayerExceptions = (layers) => {
     layers.splice(index, 1)
   })
 
+  layersToAdd.forEach((value, key) => {
+    layers.push(value)
+    shiftArr(layers, layers.length - 1, key)
+  })
+
   return layers
+}
+
+const shiftArr = (arr, fromIndex, toIndex) => {
+  var element = arr[fromIndex];
+    arr.splice(fromIndex, 1);
+    arr.splice(toIndex, 0, element);
 }
 
 const getLayerName = (layer) => {
@@ -421,89 +444,95 @@ const isDnaUnique = (_DnaList = new Set(), _dna = "") => {
 };
 
 const createDnaNames = (_layers, _variant) => {
-  let randNum = [];
+  // let randNum = [];
   const traitRules = new Map()
-  _layers.forEach((layer) => {
-    const rarityCount = {
-      Mythic: 0,
-      Legendary: 0,
-      Epic: 0,
-      Rare: 0,
-      Uncommon: 0,
-      Common: 0
-    }
-    var totalWeight = 10000;
-    // Get count of each rarity in layer folders
-    layer.elements.forEach((element) => {
-      switch (element.weight) {
-        case "Mythic":
-          rarityCount.Mythic++;
-          break;
-        case "Legendary":
-          rarityCount.Legendary++;
-          break;
-        case "Epic":
-          rarityCount.Epic++;
-          break;
-        case "Rare":
-          rarityCount.Rare++;
-          break;
-        case "Uncommon":
-          rarityCount.Uncommon++;
-          break;
-        case "Common":
-          rarityCount.Common++;
-          break;
-        default:
-          rarityCount.Common++;
-      }
-    });
-    // Find any missing rarities and log the remainder of 10,000
-    let remainder = 0;
-    for (const key in rarityCount) {
-      let diff = (rarity_config[key]['ranks'][1] - rarity_config[key]['ranks'][0]);
-      if (rarityCount[key] !== 0) {
-        rarityCount[key] = diff / rarityCount[key]
-      } else {
-        remainder += diff;
-        delete rarityCount[key];
-      }
-    }
-    // Split remainder evenly among remaining rarities
-    let remainingRarity = Object.keys(rarityCount).length;
-    remainder /= remainingRarity;
-    for (const key in rarityCount) {
-      rarityCount[key] += remainder;
-    }
-    // Check for any where higher rarity has larger weight than lower rarity
-    let uncommonDiff = (rarityCount.Uncommon > rarityCount.Common) 
-      ? Math.floor(rarityCount.Uncommon - rarityCount.Common) : 0;
-    let rareDiff = (rarityCount.Rare > rarityCount.Uncommon) 
-      ? Math.floor(rarityCount.Rare - rarityCount.Uncommon) : 0;
-    let epicDiff = (rarityCount.Epic > rarityCount.Rare) 
-      ? Math.floor(rarityCount.Epic - rarityCount.Rare) : 0;
-    let legendaryDiff = (rarityCount.Legendary > rarityCount.Epic) 
-      ? Math.floor(rarityCount.Legendary - rarityCount.Epic) : 0;
-    let mythicDiff = (rarityCount.Mythic > rarityCount.Legendary) 
-      ? Math.floor(rarityCount.Mythic - rarityCount.Legendary) : 0;
-    // Redistribute weight to ensure weights match rarities      
-    rarityCount.Common += uncommonDiff;
-    rarityCount.Uncommon -= uncommonDiff;
-    rarityCount.Uncommon += rareDiff;
-    rarityCount.Rare -= rareDiff;
-    rarityCount.Rare += epicDiff;
-    rarityCount.Epic -= epicDiff;
-    rarityCount.Epic += legendaryDiff;
-    rarityCount.Legendary -= legendaryDiff;
-    rarityCount.Legendary += mythicDiff;
-    rarityCount.Mythic -= mythicDiff;
-    // Proceed with random generation: number between 0 - totalWeight
-    let selectedTrait = selectTrait(layer, rarityCount, totalWeight, traitRules)
+  const randNum = _layers.map((layer) => createNamedLayer(layer, traitRules));
 
-    if (exceptions.traitToTrait[layer.elements[selectedTrait].name]) {
-      traitRules.set(layer.elements[selectedTrait].name, exceptions.traitToTrait[layer.elements[selectedTrait].name])
-    }
+  return randNum.join(DNA_DELIMITER);
+};
 
+const createNamedLayer = (layer, traitRules) => {
+  const rarityCount = {
+    Mythic: 0,
+    Legendary: 0,
+    Epic: 0,
+    Rare: 0,
+    Uncommon: 0,
+    Common: 0
+  }
+  var totalWeight = 10000;
+  // Get count of each rarity in layer folders
+  layer.elements.forEach((element) => {
+    switch (element.weight) {
+      case "Mythic":
+        rarityCount.Mythic++;
+        break;
+      case "Legendary":
+        rarityCount.Legendary++;
+        break;
+      case "Epic":
+        rarityCount.Epic++;
+        break;
+      case "Rare":
+        rarityCount.Rare++;
+        break;
+      case "Uncommon":
+        rarityCount.Uncommon++;
+        break;
+      case "Common":
+        rarityCount.Common++;
+        break;
+      default:
+        rarityCount.Common++;
+    }
+  });
+  // Find any missing rarities and log the remainder of 10,000
+  let remainder = 0;
+  for (const key in rarityCount) {
+    let diff = (rarity_config[key]['ranks'][1] - rarity_config[key]['ranks'][0]);
+    if (rarityCount[key] !== 0) {
+      rarityCount[key] = diff / rarityCount[key]
+    } else {
+      remainder += diff;
+      delete rarityCount[key];
+    }
+  }
+  // Split remainder evenly among remaining rarities
+  let remainingRarity = Object.keys(rarityCount).length;
+  remainder /= remainingRarity;
+  for (const key in rarityCount) {
+    rarityCount[key] += remainder;
+  }
+  // Check for any where higher rarity has larger weight than lower rarity
+  let uncommonDiff = (rarityCount.Uncommon > rarityCount.Common) 
+    ? Math.floor(rarityCount.Uncommon - rarityCount.Common) : 0;
+  let rareDiff = (rarityCount.Rare > rarityCount.Uncommon) 
+    ? Math.floor(rarityCount.Rare - rarityCount.Uncommon) : 0;
+  let epicDiff = (rarityCount.Epic > rarityCount.Rare) 
+    ? Math.floor(rarityCount.Epic - rarityCount.Rare) : 0;
+  let legendaryDiff = (rarityCount.Legendary > rarityCount.Epic) 
+    ? Math.floor(rarityCount.Legendary - rarityCount.Epic) : 0;
+  let mythicDiff = (rarityCount.Mythic > rarityCount.Legendary) 
+    ? Math.floor(rarityCount.Mythic - rarityCount.Legendary) : 0;
+  // Redistribute weight to ensure weights match rarities      
+  rarityCount.Common += uncommonDiff;
+  rarityCount.Uncommon -= uncommonDiff;
+  rarityCount.Uncommon += rareDiff;
+  rarityCount.Rare -= rareDiff;
+  rarityCount.Rare += epicDiff;
+  rarityCount.Epic -= epicDiff;
+  rarityCount.Epic += legendaryDiff;
+  rarityCount.Legendary -= legendaryDiff;
+  rarityCount.Legendary += mythicDiff;
+  rarityCount.Mythic -= mythicDiff;
+  // Proceed with random generation: number between 0 - totalWeight
+  let selectedTrait = selectTrait(layer, rarityCount, totalWeight, traitRules)
+
+  if (exceptions.traitToTrait[layer.elements[selectedTrait].name]) {
+    traitRules.set(layer.elements[selectedTrait].name, exceptions.traitToTrait[layer.elements[selectedTrait].name])
+  }
+
+  if (traitRules?.length) {
     traitRules.forEach((value, key) => {
       value.forEach(val => {
         if (val === layer.elements[selectedTrait].name) {
@@ -513,22 +542,16 @@ const createDnaNames = (_layers, _variant) => {
         }
       })
     });
+  }
 
-    if(layer.layerVariations != undefined) {
-      return randNum.push(
-        `${layer.name}_${layer.elements[selectedTrait].id}:${layer.elements[selectedTrait].name}& ${_variant}`
-      );
-    } else {
-      return randNum.push(
-        `${layer.name}_${layer.elements[selectedTrait].id}:${layer.elements[selectedTrait].filename}${
-          layer.bypassDNA ? "?bypassDNA=true" : ""
-        }`
-      );
-    }
-  });
-
-  return randNum.join(DNA_DELIMITER);
-};
+  if(layer.layerVariations != undefined) {
+    return `${layer.name}_${layer.elements[selectedTrait].id}:${layer.elements[selectedTrait].name}& ${_variant}`;
+  } else {
+    return `${layer.name}_${layer.elements[selectedTrait].id}:${layer.elements[selectedTrait].filename}${
+      layer.bypassDNA ? "?bypassDNA=true" : ""
+    }`
+  }
+}
 
 const selectTrait = (layer, rarityCount, totalWeight) => {
   let random = Math.floor(Math.random() * totalWeight);
@@ -785,8 +808,6 @@ const startCreating = async () => {
     while (
       editionCount <= layerConfigurations[layerConfigIndex].growEditionSizeTo
     ) {
-      console.log(Date.now(), 'editionCount', editionCount)
-      console.log(Date.now(), 'size', layerConfigurations[layerConfigIndex].growEditionSizeTo)
 
       let currentEdition = editionCount - 1;
       let remainingInLayersOrder = layerConfigurations[layerConfigIndex].growEditionSizeTo - currentEdition;
@@ -801,11 +822,10 @@ const startCreating = async () => {
 
       let newDna = (exactWeight) ? createDnaExact(layers, remainingInLayersOrder, currentEdition, variant) : (namedWeight) ? createDnaNames(layers, variant) : createDna(layers, variant);
       let duplicatesAllowed = (allowDuplicates) ? true : isDnaUnique(dnaList, newDna);
-      console.log(Date.now(), newDna)
 
       // if (isDnaUnique(dnaList, newDna)) {
       if (duplicatesAllowed) {
-        let results = constructLayerToDna(newDna, layers);
+        let results = constructLayerToDna(newDna, layers, layerConfigIndex);
 
         if (exactWeight) {
           results.forEach((layer) => {

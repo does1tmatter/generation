@@ -49,7 +49,9 @@ const layerConfigurations = [
     growEditionSizeTo: 30,
     layersOrder: [
       { name: "Background" },
-      { name: "Couches" },
+      { name: "Couch" },
+      { name: "Food" },
+      { name: "Misc" },
       { name: "Body" },
       { name: "Eyes" },
       { name: "Mouth" },
@@ -57,14 +59,13 @@ const layerConfigurations = [
       { name: "Beard" },
       { name: "Hair" },
       { name: "Pants" },
-      { name: "Shirts" },
+      { name: "Shirt" },
       { name: "Clothes" },
-      { name: "Slippers" },
+      { name: "Slippers" }, 
       { name: "Mask" },
       { name: "Eyewear" },
       { name: "Headwear" },
-      { name: "Food" },
-      { name: "Misc" },
+      { name: "Mascot" },
     ]
   }
 ];
@@ -269,7 +270,7 @@ const exceptions = {
     Santa: ['Headwear', 'Hair', 'Beard', 'Slippers'],
     King: ['Headwear', 'Hair'],
     Footballer: ['Headwear', 'Hair'],
-    Straitjacket: ['Beard', 'Body', 'Clothes', 'Eyes', 'Eyewear', 'Hair', 'Headwear', 'Mask', 'Mouth', 'Nose', 'Pants', 'Shirts', 'Slippers'],
+    Straitjacket: ['Beard', 'Body', 'Clothes', 'Eyes', 'Eyewear', 'Hair', 'Headwear', 'Mask', 'Mouth', 'Nose', 'Pants', 'Shirt', 'Slippers'],
     Elf: ['Headwear', 'Hair', 'Mask'],
     Eagle: ['Nose', 'Mask', 'Beard'],
     Toucan: ['Mouth', 'Mask', 'Beard'],
@@ -286,14 +287,17 @@ const exceptions = {
     Barbarian: ['Slippers'],
     FMNT: ['Slippers'],
     Hippie: ['Slippers'],
-    Dumbbell: ['Slippers']
+    Pig: ['Food']
   },
   layerToLayer: {
     Clothes: ['Pants'],
     Mask: ['Headwear', 'Eyewear', 'Hair', 'Beard']
   },
   conditionalLayerToLayer: {
-    Shirt: ['Clothes'],
+    Shirt: {
+      uncompatible: 'Clothes',
+      required: 'Pants'
+    },
   }
 }
 

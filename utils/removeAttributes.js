@@ -5,7 +5,7 @@ const isLocal = typeof process.pkg === 'undefined';
 const basePath = isLocal ? process.cwd() : path.dirname(process.execPath);
 const fs = require('fs');
 
-let removeValue = [ "None", "None 1", "None 2", "None 3" ] //Enter values you want to remove here. (ie: "None")
+let removeValue = [ "None", "None 1", "None 2", "None 3", "None 4", "None 5", "None 6", "None 7", "None 8", "None 9", "None 10" ] //Enter values you want to remove here. (ie: "None")
 let removeTraitType = [] //Enter a Traits you want to remove here. (ie: "Head")
 
 // Read json data
