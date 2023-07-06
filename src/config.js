@@ -246,7 +246,7 @@ const exceptions = {
     'Fatella': ['Stacked Cups'],
     'Fried Egg': ['Stacked Cups'],
     'Fries': ['Stacked Cups'],
-    'Gõla': ['Stacked Cups'],
+    'Gola': ['Stacked Cups'],
     'Ice Cream 1': ['Stacked Cups'],
     'Ice Cream 2': ['Stacked Cups'],
     'Pizza': ['Stacked Cups'],
@@ -285,7 +285,8 @@ const exceptions = {
     'Bard Red': ['Slippers', 'Food'],
     Barbarian: ['Slippers'],
     FMNT: ['Slippers'],
-    Hippie: ['Slippers']
+    Hippie: ['Slippers'],
+    Dumbbell: ['Slippers']
   },
   layerToLayer: {
     Clothes: ['Pants'],

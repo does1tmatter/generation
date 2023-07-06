@@ -5,8 +5,8 @@ const isLocal = typeof process.pkg === 'undefined';
 const basePath = isLocal ? process.cwd() : path.dirname(process.execPath);
 const fs = require('fs');
 
-let valueBefore = ["3", "Layer"] //Enter old values here
-let valueAfter = [":3", ":|"] //Enter new values here
+let valueBefore = ["3", "Layer", "Gola"] //Enter old values here
+let valueAfter = [":3", ":|", "Gõla"] //Enter new values here
 let traitTypeBefore = [] //Enter old trait_types here
 let traitTypeAfter = [] //Enter new trait_trypes here
 

@@ -34,4 +34,4 @@ data.forEach((item) => {
 
 fs.writeFileSync(`${basePath}/build/json/_metadata.json`, JSON.stringify(data, null, 2));
 
-console.log(`Removed all traits with ${removeValue} value(s) and ${removeTraitType} trait_type(s)`);
+console.log(`Removed all traits with None values`);

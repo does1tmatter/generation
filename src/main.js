@@ -537,7 +537,6 @@ const selectTrait = (layer, rarityCount, totalWeight) => {
     // subtract the current weight from the random weight until we reach a sub zero value.
     random -= rarityCount[newWeight];
     if (random < 0) {
-
       return i
     } 
   } 
@@ -786,6 +785,8 @@ const startCreating = async () => {
     while (
       editionCount <= layerConfigurations[layerConfigIndex].growEditionSizeTo
     ) {
+      console.log(Date.now(), 'editionCount', editionCount)
+      console.log(Date.now(), 'size', layerConfigurations[layerConfigIndex].growEditionSizeTo)
 
       let currentEdition = editionCount - 1;
       let remainingInLayersOrder = layerConfigurations[layerConfigIndex].growEditionSizeTo - currentEdition;
@@ -800,6 +801,7 @@ const startCreating = async () => {
 
       let newDna = (exactWeight) ? createDnaExact(layers, remainingInLayersOrder, currentEdition, variant) : (namedWeight) ? createDnaNames(layers, variant) : createDna(layers, variant);
       let duplicatesAllowed = (allowDuplicates) ? true : isDnaUnique(dnaList, newDna);
+      console.log(Date.now(), newDna)
 
       // if (isDnaUnique(dnaList, newDna)) {
       if (duplicatesAllowed) {
