@@ -46,6 +46,7 @@ var dnaList = new Set();
 const DNA_DELIMITER = "-";
 const HashlipsGiffer = require(`${basePath}/modules/HashlipsGiffer.js`);
 const oldDna = `${basePath}/build_old/_oldDna.json`;
+const traitToInvestigate = null
 
 let hashlipsGiffer = null;
 let allTraitsCount;
@@ -355,7 +356,7 @@ const constructLayerToDna = (_dna = "", _layers = [], layerConfigIndex) => {
         opacity: layer.opacity,
         layerVariations: layer.layerVariations,
         selectedElement: requiredLayer,
-        ogName: layer.ogName
+        ogName: layer.required.name
       } : null
     }
   });
@@ -371,9 +372,15 @@ const filterTraitExceptions = (layers) => {
     const layerName = getLayerName(layer)
 
     if (exceptions.traitToLayer[traitName] && !traitName.includes('None')) {
+      if (traitToInvestigate && traitName === traitToInvestigate) {
+        console.log(`--------------------------- found ${traitToInvestigate}`)
+        console.log(exceptions.traitToLayer[traitName])
+        console.log(`---------------------------`)
+      }
       exceptions.traitToLayer[traitName].forEach(val => {
         layers.forEach((x, i) => {
           if (getLayerName(x) === val && (!layersToRemove.has(getLayerName(x)) && !layersToRemove.has(layerName))) {
+            if (traitToInvestigate && traitName === traitToInvestigate) console.log(getLayerName(x), 'added to remove')
             layersToRemove.add(getLayerName(x))
           }
         })
