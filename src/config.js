@@ -249,6 +249,7 @@ const exceptions = {
     'Van Dyke': ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks', 'Froggy', 'Ushanka'],
     Viking: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks', 'Froggy'],
     Wizard: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks'],
+    Assasson: ['Full'],
     'M 2': ['Pinocchio'],
     'M 4': ['Pinocchio'],
     'M 5': ['Pinocchio'],
