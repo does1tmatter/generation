@@ -35,14 +35,14 @@ data.forEach((item) => {
   attributes.forEach((attribute) => {
     // Update values
     for (let i = 0; i < valueBefore.length; i++) {
-      if (attribute.value.includes(valueBefore[i])) {
+      if (attribute.value === valueBefore[i]) {
         let updatedValue = attribute.value.replace(valueBefore[i], valueAfter[i]);
         attribute.value = updatedValue;
       }
     }
     // Update trait_types
     for (let i = 0; i < traitTypeBefore.length; i++) {
-      if (attribute.trait_type.includes(traitTypeBefore[i])) {
+      if (attribute.trait_type === traitTypeBefore[i]) {
         let updatedTraitType = attribute.trait_type.replace(traitTypeBefore[i], traitTypeAfter[i]);
         attribute.trait_type = updatedTraitType;
       }
