@@ -153,6 +153,15 @@ const rarity_config = {
   Common: { ranks: [5600, 10000] }, //, fileName: 'Common.png' },
 };
 
+const rarityTable = {
+  Common: 60,
+  Uncommon: 50,
+  Rare: 40,
+  Epic: 30,
+  Legendary: 20,
+  Mythic: 10
+}
+
 const layerVariations = [
   // {
   //   variationCount: 1,
@@ -340,6 +349,7 @@ module.exports = {
   preview_gif,
   resumeNum,
   rarity_config,
+  rarityTable,
   toCreateNow,
   collectionSize,
   namedWeight,

@@ -33,7 +33,8 @@ const {
   enableStats,
   statBlocks,
   extraAttributes,
-  exceptions
+  exceptions,
+  rarityTable
 } = require(`${basePath}/src/config.js`);
 const canvas = createCanvas(format.width, format.height);
 const ctx = canvas.getContext("2d");
@@ -465,8 +466,6 @@ const createDnaNames = (_layers, _variant) => {
 
 const createNamedLayer = (layer, traitRules) => {
   let requiredLayer = ''
-  const rarityCount = getRarityCount(layer.elements)
-  const totalWeight = 10000
   let selectedTrait = selectNamedTrait(layer.elements)
 
   if (exceptions.traitToTrait[layer.elements[selectedTrait].name]) {
@@ -515,21 +514,12 @@ const createNamedLayer = (layer, traitRules) => {
 }
 
 const selectNamedTrait = (elements) => {
-  const weightTable = {
-    Common: 60,
-    Uncommon: 50,
-    Rare: 40,
-    Epic: 30,
-    Legendary: 20,
-    Mythic: 10
-  }
-
   const weights = []
   let totalWeight = 0
 
   elements.forEach(ele => {
-    weights.push(weightTable[ele.weight])
-    totalWeight += weightTable[ele.weight]
+    weights.push(rarityTable[ele.weight])
+    totalWeight += rarityTable[ele.weight]
   })
 
   let random = getRandomNumber(totalWeight)
