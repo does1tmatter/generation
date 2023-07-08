@@ -373,7 +373,6 @@ const filterTraitExceptions = (layers) => {
       exceptions.traitToLayer[traitName].forEach(val => {
         layers.forEach((x, i) => {
           if (getLayerName(x) === val && (!layersToRemove.has(getLayerName(x)) && !layersToRemove.has(layerName))) {
-            console.log(`${traitName} incompatible with ${getLayerName(x)}`)
             layersToRemove.add(getLayerName(x))
           }
         })
@@ -387,7 +386,6 @@ const filterTraitExceptions = (layers) => {
         exceptions.traitToLayer[requiredTrait].forEach(val => {
           layers.forEach((x, i) => {
             if (getLayerName(x) === val && (!layersToRemove.has(getLayerName(x)) && !layersToRemove.has(layerName))) {
-              console.log(`${requiredTrait} incompatible with ${getLayerName(x)}`)
               layersToRemove.add(getLayerName(x))
             }
           })
