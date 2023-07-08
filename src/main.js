@@ -467,15 +467,7 @@ const createNamedLayer = (layer, traitRules) => {
   let requiredLayer = ''
   const rarityCount = getRarityCount(layer.elements)
   const totalWeight = 10000
-  let selectedTrait
-
-  // Proceed with random generation: number between 0 - totalWeight
-  selectedTrait = forceSelect(layer.elements)
-  // if (Object.keys(rarityCount).length == 1) {
-  //   selectedTrait = forceSelect(layer.elements)
-  // } else {
-  //   selectedTrait = selectTrait(layer.elements, rarityCount, totalWeight)
-  // }
+  let selectedTrait = selectNamedTrait(layer.elements)
 
   if (exceptions.traitToTrait[layer.elements[selectedTrait].name]) {
     traitRules.set(layer.elements[selectedTrait].name, exceptions.traitToTrait[layer.elements[selectedTrait].name])
@@ -486,7 +478,7 @@ const createNamedLayer = (layer, traitRules) => {
       value.forEach(val => {
         if (val === layer.elements[selectedTrait].name) {
           while (val === layer.elements[selectedTrait].name) {
-            selectedTrait = forceSelect(layer.elements)
+            selectedTrait = selectNamedTrait(layer.elements)
           }
         }
       })
@@ -494,7 +486,7 @@ const createNamedLayer = (layer, traitRules) => {
   }
 
   if (layer.required) {
-    let requiredTrait = forceSelect(layer.required.elements)
+    let requiredTrait = selectNamedTrait(layer.required.elements)
 
     if (exceptions.traitToTrait[layer.required.elements[requiredTrait].name]) {
       traitRules.set(layer.required.elements[requiredTrait].name, exceptions.traitToTrait[layer.required.elements[requiredTrait].name])
@@ -505,7 +497,7 @@ const createNamedLayer = (layer, traitRules) => {
         value.forEach(val => {
           if (val === layer.required.elements[requiredTrait].name) {
             while (val === layer.required.elements[requiredTrait].name) {
-              requiredTrait = forceSelect(layer.required.elements)
+              requiredTrait = selectNamedTrait(layer.required.elements)
             }
           }
         })
@@ -522,19 +514,7 @@ const createNamedLayer = (layer, traitRules) => {
   }
 }
 
-const selectTrait = (elements, rarityCount, totalWeight, log) => {
-  let random = getRandomNumber(totalWeight)
-
-  for (let i = 0; i < elements.length; i++) {
-    let traitWeight = elements[i].weight
-
-    // subtract the current weight from the random weight until we reach a sub zero value.
-    random -= rarityCount[traitWeight]
-    if (random < 0) return i
-  } 
-}
-
-const forceSelect = (elements) => {
+const selectNamedTrait = (elements) => {
   const weightTable = {
     Common: 60,
     Uncommon: 50,
@@ -549,9 +529,8 @@ const forceSelect = (elements) => {
 
   elements.forEach(ele => {
     weights.push(weightTable[ele.weight])
+    totalWeight += weightTable[ele.weight]
   })
-
-  weights.forEach(w => totalWeight += w)
 
   let random = getRandomNumber(totalWeight)
 
