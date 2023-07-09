@@ -61,8 +61,8 @@ const layerConfigurations = [
       { name: "Masks" },
       { name: "Mouth" },
       { name: "Beard" },
-      { name: "Nose" },
       { name: "Hair", or: { name: 'Headwear' } },
+      { name: "Nose" },
     ]
   }
 ];
@@ -212,13 +212,11 @@ const exceptions = {
     'Thug Life': ['Frog', 'Chef'],
     Tyson: ['Frog', 'Chef'],
     Tusks: ['Froggy'],
-    Clown: ['Lions Roar', 'Eagle'],
-    Pinocchio: ['Lions Roar', 'Eagle', 'Astro'],
-    Toucan: ['Spartan', 'Nord'],
-    Eagle: ['Spartan', 'Ottoman', 'Frog', 'Medusa', 'Nord', 'Wolf', 'Ushanka'],
+    'Lions Roar': ['Clown', 'Pinocchio'],
+    Eagle: ['Spartan', 'Ottoman', 'Frog', 'Medusa', 'Nord', 'Wolf', 'Ushanka', 'Clown'],
     Spartan: ['Toucan', 'Pinocchio', 'Merchant', 'Trunk', 'Aviator', 'Dope', 'Franklin', 'Karen', 'Open', 'Nerd', 'Professional', 'Thug Life'],
     Astro: ['Toucan', 'Pinocchio', 'Merchant', 'Trunk', 'Aviator', 'Dope', 'Franklin', 'Karen', 'Open', 'Nerd', 'Professional', 'Thug Life', 'Frog Tongue', 'Snakes Tongue', 'Eagle', 'Tusks', 'Toucan', 'Pinocchio', 'Happy Merchant'],
-    Nord: ['Aviator', 'Dope', 'Franklin', 'Karen', 'Open', 'Nerd', 'Professional', 'Thug Life'],
+    Nord: ['Aviator', 'Dope', 'Franklin', 'Karen', 'Open', 'Nerd', 'Professional', 'Thug Life', 'Toucan'],
     Karen: ['Chef'],
     Monocle: ['Chef'],
     Open: ['Chef'],
@@ -228,7 +226,7 @@ const exceptions = {
     'Living Room': ['Playboy', 'Fatcraft Blue', 'Fatcraft Red'],
     Caterpillar: ['Medusa', 'Ushanka'],
     Lion: ['Ronikbot', 'Elegant'],
-    Wolf: ['Ronikbot', 'Elegant'],
+    Wolf: ['Ronikbot', 'Elegant', 'Happy Merchant'],
     Rocker: ['Alt', 'Caterpillar', 'Elegant', 'Full', 'Hobo', 'KiBi', 'Ronikbot', 'Tingles', 'Van Dyke', 'Viking', 'Wizard'],
     Dope: ['Froggy'],
     // beard
@@ -256,7 +254,6 @@ const exceptions = {
     Holograph: ['Washing Stick', 'Lightsaber', 'Stacked Cups'],
     Tree: ['Washing Stick', 'Lightsaber'],
     Belt: ['Coat'],
-    'Happy Merchant': ['Wolf']
   },
   traitToLayer: {
     Onion: ['Eyewear', 'Headwear', 'Hair', 'Eyes', 'Masks', 'Nose', 'Mouth', 'Beard', 'Slippers'],
