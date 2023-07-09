@@ -22,7 +22,6 @@ const {
   solanaMetadata,
   gif,
   resumeNum,
-  rarity_config,
   toCreateNow,
   collectionSize,
   namedWeight,
@@ -540,6 +539,15 @@ const selectNamedTrait = (elements) => {
 const getRandomNumber = (totalWeight) => Math.floor(Math.random() * totalWeight)
 
 const getRarityCount = (layers) => {
+  const rarity_config = {
+    Mythic: { ranks: [0, 100] },
+    Legendary: { ranks: [100, 600] },
+    Epic: { ranks: [600, 1500] },
+    Rare: { ranks: [1500, 3100] },
+    Uncommon: { ranks: [3100, 5600] },
+    Common: { ranks: [5600, 10000] },
+  };
+  
   const rarityCount = {
     Mythic: 0,
     Legendary: 0,

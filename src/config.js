@@ -137,22 +137,6 @@ const preview_gif = {
   imageName: "preview.gif",
 };
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
-* Rarity distribution can be adjusted
-* Keep range [0 - 10,000]
-* Because weight is up to 10,000, percentages can determined up to 
-* two decimal places. ie: 10.15% would be 1015
-* DO NOT change the rarity names unless you know what you're doing in main.js
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-const rarity_config = {
-  Mythic: { ranks: [0, 100] }, //, fileName: 'Mythic.png' },
-  Legendary: { ranks: [100, 600] }, //, fileName: 'Legendary.png' },
-  Epic: { ranks: [600, 1500] }, //, fileName: 'Epic.png' },
-  Rare: { ranks: [1500, 3100] }, //, fileName: 'Rare.png' },
-  Uncommon: { ranks: [3100, 5600] }, //, fileName: 'Uncommon.png' },
-  Common: { ranks: [5600, 10000] }, //, fileName: 'Common.png' },
-};
-
 const rarityTable = {
   Common: 60,
   Uncommon: 50,
@@ -207,9 +191,9 @@ const exceptions = {
     'Washing Stick': ['Tree', 'Hologram'],
     // Couches
     Gnomes: ['Bear', 'Boxer', 'Croc', 'Fat Cat', 'Fat Michael', 'Fat Ninja', 'Fighter', 'Grim', 'Pink Man', 'PIPEPE', 'Polar Bear', 'Swamp Man', 'Tie Bear'],
-    'Living Room': ['Playboy', 'Fatcraft Blue', 'Fatcraft Red'],
     Holograph: ['Washing Stick', 'Lightsaber', 'Stacked Cups'],
     Tree: ['Washing Stick', 'Lightsaber'],
+    'Living Room': ['Playboy', 'Fatcraft Blue', 'Fatcraft Red'],
     // Clothes
     FMNT: ['Aviator', 'Dope', 'Franklin', 'Karen', 'Nerd', 'Open', 'Professional'],
     'Bard Blue': ['Magic Wand'],
@@ -222,15 +206,15 @@ const exceptions = {
     Dope: ['Chef', 'Froggy'],
     Franklin: ['Chef'],
     Professional: [],
-    'Thug Life': ['Chef'],
     Tyson: ['Chef'],
     Monocle: ['Chef'],
     Open: ['Chef'],
     Karen: ['Chef'],
+    'Thug Life': ['Chef'],
     // Mouth
     Tusks: ['Froggy', 'Dreadlocks'],
-    'Lions Roar': ['Clown', 'Pinocchio'],
     Eagle: ['Spartan', 'Ottoman', 'Frog', 'Medusa', 'Nord', 'Wolf', 'Ushanka', 'Clown', 'Dreadlocks'],
+    'Lions Roar': ['Clown', 'Pinocchio'],
     'Frog Tongue': ['Dreadlocks'],
     'Snakes Tongue': ['Dreadlocks'],
     // Headwear
@@ -255,9 +239,9 @@ const exceptions = {
     Tingles: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks', 'Froggy'],
     Tom: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks'],
     Twirl: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks'],
-    'Van Dyke': ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks', 'Froggy', 'Ushanka', 'Dreadlocks'],
     Viking: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks', 'Froggy'],
     Wizard: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks', 'Dreadlocks'],
+    'Van Dyke': ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks', 'Froggy', 'Ushanka', 'Dreadlocks'],
     // dudes
     'M 2': ['Pinocchio'],
     'M 4': ['Pinocchio'],
@@ -303,25 +287,23 @@ const exceptions = {
     'Stacked Cups': ['Food'],
     // Masks
     Astro: ['Headwear', 'Eyewear', 'Hair', 'Beard'],
-    'Greek Marble': ['Headwear', 'Eyewear', 'Hair', 'Beard', 'Nose', 'Mouth', 'Eyes'],
     Knight: ['Headwear', 'Eyewear', 'Hair', 'Beard', 'Nose', 'Mouth', 'Eyes'],
-    'Plague Doctor': ['Headwear', 'Eyewear', 'Hair', 'Beard', 'Nose', 'Mouth', 'Eyes'],
     Shock: ['Headwear', 'Eyewear', 'Hair', 'Beard', 'Nose', 'Mouth', 'Eyes'],
-    'Space Soldier': ['Headwear', 'Eyewear', 'Hair', 'Beard', 'Nose', 'Mouth', 'Eyes'],
     Stone: ['Headwear', 'Eyewear', 'Hair', 'Beard', 'Nose', 'Mouth', 'Eyes'],
     Venice: ['Headwear', 'Eyewear', 'Hair', 'Beard', 'Nose', 'Mouth'],
+    'Greek Marble': ['Headwear', 'Eyewear', 'Hair', 'Beard', 'Nose', 'Mouth', 'Eyes'],
+    'Plague Doctor': ['Headwear', 'Eyewear', 'Hair', 'Beard', 'Nose', 'Mouth', 'Eyes'],
+    'Space Soldier': ['Headwear', 'Eyewear', 'Hair', 'Beard', 'Nose', 'Mouth', 'Eyes'],
     // mouth
+    Eagle: ['Nose', 'Masks', 'Beard'], 
+    Tusks: ['Beard'], 
     'Snakes Tongue': ['Beard'],
     'Lions Roar': ['Beard'],
     'Frog Tongue': ['Beard'],
-    Eagle: ['Nose', 'Masks', 'Beard'], 
     'Dollar Bill': ['Beard'], 
-    Tusks: ['Beard'], 
     // hair
     Afro: ['Masks'],
-    'Air Force Pilot': ['Masks'],
     Alternative: ['Masks'],
-    'Big Afro': ['Masks'],
     Buzz: ['Masks'],
     Combed: ['Masks'],
     Dreadlocks: ['Masks'],
@@ -332,9 +314,11 @@ const exceptions = {
     Samurai: ['Masks'],
     Short: ['Masks'],
     Slicked: ['Masks'],
-    'Strong Fighter': ['Masks'],
     Tonsure: ['Masks'],
     Undercut: ['Masks'],
+    'Air Force Pilot': ['Masks'],
+    'Big Afro': ['Masks'],
+    'Strong Fighter': ['Masks'],
     // missing
     King: ['Headwear', 'Hair'],
     Footballer: ['Headwear', 'Hair', 'Beard'],
@@ -361,7 +345,6 @@ module.exports = {
   gif,
   preview_gif,
   resumeNum,
-  rarity_config,
   rarityTable,
   toCreateNow,
   collectionSize,
