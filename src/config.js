@@ -46,7 +46,7 @@ const solanaMetadata = {
 // If you have selected Solana then the collection starts from 0 automatically
 const layerConfigurations = [
   {
-    growEditionSizeTo: 100,
+    growEditionSizeTo: 150,
     layersOrder: [
       { name: "Background" },
       { name: "Couches" },
@@ -247,8 +247,6 @@ const exceptions = {
     'M 5': ['Pinocchio'],
     // Pants
     Belt: ['Coat'],
-    // missing
-    Rocker: ['Alt', 'Caterpillar', 'Elegant', 'Full', 'Hobo', 'KiBi', 'Ronikbot', 'Tingles', 'Van Dyke', 'Viking', 'Wizard'],
   },
   traitToLayer: {
     // background
@@ -258,12 +256,14 @@ const exceptions = {
     Assasson: ['Eyewear', 'Headwear', 'Hair', 'Masks', 'Nose', 'Mouth', 'Slippers', 'Beard'],
     Pirate: ['Headwear', 'Hair', 'Eyes', 'Masks', 'Beard', 'Slippers'],
     Ninja: ['Headwear', 'Eyewear', 'Hair', 'Masks', 'Nose', 'Mouth', 'Beard', 'Slippers'],
+    FMNT: ['Slippers', 'Eyewear'],
     Doctor: ['Slippers'],
-    FMNT: ['Slippers'],
     Hippie: ['Slippers'],
     Barbarian: ['Slippers', 'Masks', 'Hair'],
     Santa: ['Headwear', 'Hair', 'Beard', 'Slippers'],
     Straitjacket: ['Beard', 'Dudes', 'Clothes', 'Eyes', 'Eyewear', 'Hair', 'Headwear', 'Masks', 'Mouth', 'Nose', 'Pants', 'Shirt', 'Slippers'],
+    King: ['Headwear', 'Hair'], // Body XL-XXXL
+    Footballer: ['Headwear', 'Hair', 'Beard'], // Body XL-XXXL
     'Onion Red': ['Eyewear', 'Headwear', 'Hair', 'Eyes', 'Masks', 'Nose', 'Mouth', 'Beard', 'Slippers'],
     'Cartie Blue': ['Headwear', 'Hair', 'Masks'],
     'Cartie Red': ['Headwear', 'Hair', 'Masks'],
@@ -318,9 +318,6 @@ const exceptions = {
     'Air Force Pilot': ['Masks'],
     'Big Afro': ['Masks'],
     'Strong Fighter': ['Masks'],
-    // missing
-    King: ['Headwear', 'Hair'],
-    Footballer: ['Headwear', 'Hair', 'Beard'],
   }
 }
 
