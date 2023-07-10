@@ -233,7 +233,7 @@ const exceptions = {
     'Lions Roar': ['Clown', 'Pinocchio'],
     'Frog Tongue': ['Dreadlocks', 'Wolf', 'Lion', 'Ushanka'],
     'Snakes Tongue': ['Dreadlocks', 'Wolf', 'Lion', 'Ushanka'],
-    'Dollar Bill': ['Dreadlocks', 'Wolf', 'Lion', 'Ushanka'],
+    'Dollar Bill': ['Dreadlocks', 'Wolf', 'Lion', 'Ushanka', 'Froggy'],
 
     // beard
     Alt: ['Froggy', 'Alternative'],
