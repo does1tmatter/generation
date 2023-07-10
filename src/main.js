@@ -45,7 +45,8 @@ var dnaList = new Set();
 const DNA_DELIMITER = "-";
 const HashlipsGiffer = require(`${basePath}/modules/HashlipsGiffer.js`);
 const oldDna = `${basePath}/build_old/_oldDna.json`;
-const traitToInvestigate = null
+const singleJsonName = '_metadata'
+const traitToInvestigate = 'Straitjacket'
 
 let hashlipsGiffer = null;
 let allTraitsCount;
@@ -81,14 +82,11 @@ const buildSetup = () => {
 const getRarityWeight = (_str) => {
   let nameWithoutExtension = _str.slice(0, -4);
   if (namedWeight) {
-  var nameWithoutWeight = String(
-    nameWithoutExtension.split(rarityDelimiter).pop()
-  )} else {
-  var nameWithoutWeight = Number(
-    nameWithoutExtension.split(rarityDelimiter).pop()
-  )}
-  return nameWithoutWeight;
-};
+    return String(nameWithoutExtension.split(rarityDelimiter).pop())
+  } else {
+    return Number(nameWithoutExtension.split(rarityDelimiter).pop())
+  }
+}
 
 function cleanDna(_str) {
   const withoutOptions = removeQueryStrings(_str);
@@ -102,23 +100,20 @@ const cleanName = (_str) => {
   return nameWithoutWeight;
 };
 
-const getElements = (path) => {
-  return fs
-    .readdirSync(path)
-    .filter((item) => !/(^|\/)\.[^\/\.]/g.test(item))
-    .map((i, index) => {
-      if (i.includes("-")) {
-        throw new Error(`layer name can not contain dashes, please fix: ${i}`);
-      }
-      return {
-        id: index,
-        name: cleanName(i),
-        filename: i,
-        path: `${path}${i}`,
-        weight: getRarityWeight(i),
-      };
-    });
-};
+const getElements = (path) => fs
+  .readdirSync(path)
+  .filter((item) => !/(^|\/)\.[^\/\.]/g.test(item))
+  .map((i, index) => {
+    if (i.includes("-")) throw new Error(`layer name can not contain dashes, please fix: ${i}`)
+    
+    return {
+      id: index,
+      name: cleanName(i),
+      filename: i,
+      path: `${path}${i}`,
+      weight: getRarityWeight(i),
+    }
+  })
 
 const layersSetup = (layersOrder) => layersOrder.map((layerObj, index) => {
   const selective = []
@@ -180,21 +175,7 @@ const getLayerTotalWeight = (elements) => {
   return Math.floor(totalWeight)
 }
 
-// const saveImage = (_editionCount) => {
-//   fs.writeFileSync(
-//     `${buildDir}/images/${_editionCount}.png`,
-//     canvas.toBuffer("image/png")
-//   );
-// };
-
-const saveImage = (_editionCount) => {
-  fs.writeFileSync(
-    `${buildDir}/images/${_editionCount}.png`,
-    canvas.toBuffer("image/png", {
-      resolution: format.dpi,
-    }),
-  );
-};
+const saveImage = (_editionCount) => fs.writeFileSync(`${buildDir}/images/${_editionCount}.png`, canvas.toBuffer("image/png", { resolution: format.dpi }));
 
 const genColor = () => {
   let hue = Math.floor(Math.random() * 360);
@@ -216,44 +197,31 @@ const addMetadata = (_dna, _edition) => {
     id: _edition,
     ...extraMetadata,
     attributes: attributesList,
-  };
+  }
+
   if (network == NETWORK.sol) {
+    // Add metadata for solana
     tempMetadata = {
-      //Added metadata for solana
-      name: tempMetadata.name,
+      ...tempMetadata,
       symbol: solanaMetadata.symbol,
-      description: tempMetadata.description,
-      //Added metadata for solana
       seller_fee_basis_points: solanaMetadata.seller_fee_basis_points,
       image: `${_edition}.png`,
-      //Added metadata for solana
       external_url: solanaMetadata.external_url,
-      id: _edition,
-      ...extraMetadata,
-      attributes: tempMetadata.attributes,
       properties: {
         files: [
-          {
-            uri: `${_edition}.png`,
-            type: "image/png",
-          },
+          { uri: `${_edition}.png`, type: "image/png" }
         ],
         category: "image",
-        creators: solanaMetadata.creators,
-      },
-    };
+        creators: solanaMetadata.creators
+      }
+    }
   }
+
   metadataList.push(tempMetadata);
   attributesList = [];
 };
 
-const addAttributes = (_element) => {
-  let selectedElement = _element.layer.selectedElement;
-  attributesList.push({
-    trait_type: _element.layer.name,
-    value: selectedElement.name,
-  });
-};
+const addAttributes = (_element) => attributesList.push({ trait_type: _element.layer.name, value: _element.layer.selectedElement.name });
 
 const addStats = () => {
     statBlocks.forEach((stat) => {
@@ -409,22 +377,9 @@ const filterTraitExceptions = (layers) => {
   return layers
 }
 
-const getLayerName = (layer) => {
-  return layer.ogName
-}
+const getLayerName = (layer) => layer.ogName
+const getTraitName = (layer) => layer.selectedElement.name
 
-const getTraitName = (layer) => {
-  return layer.selectedElement.name
-}
-
-/**
- * In some cases a DNA string may contain optional query parameters for options
- * such as bypassing the DNA isUnique check, this function filters out those
- * items without modifying the stored DNA.
- *
- * @param {String} _dna New DNA string
- * @returns new DNA string with any items that should be filtered, removed.
- */
 const filterDNAOptions = (_dna) => {
   const dnaItems = _dna.split(DNA_DELIMITER);
   const filteredDNA = dnaItems.filter((element) => {
@@ -444,26 +399,10 @@ const filterDNAOptions = (_dna) => {
   return filteredDNA.join(DNA_DELIMITER);
 };
 
-/**
- * Cleaning function for DNA strings. When DNA strings include an option, it
- * is added to the filename with a ?setting=value query string. It needs to be
- * removed to properly access the file name before Drawing.
- *
- * @param {String} _dna The entire newDNA string
- * @returns Cleaned DNA string without querystring parameters.
- */
-const removeQueryStrings = (_dna) => {
-  const query = /(\?.*$)/;
-  return _dna.replace(query, "");
-};
-
-const isDnaUnique = (_DnaList = new Set(), _dna = "") => {
-  const _filteredDNA = filterDNAOptions(_dna);
-  return !_DnaList.has(_filteredDNA);
-};
+const removeQueryStrings = (_dna) => _dna.replace(/(\?.*$)/, "");
+const isDnaUnique = (_DnaList = new Set(), _dna = "") => !_DnaList.has(filterDNAOptions(_dna));
 
 const createDnaNames = (_layers, _variant) => {
-  // let randNum = [];
   const traitRules = new Map()
   const randNum = _layers.map((layer) => createNamedLayer(layer, traitRules));
 
@@ -524,14 +463,17 @@ const selectNamedTrait = (elements) => {
   let totalWeight = 0
 
   elements.forEach(ele => {
-    weights.push(rarityTable[ele.weight])
-    totalWeight += rarityTable[ele.weight]
+    const weight = rarityTable[ele.weight]
+
+    weights.push(weight)
+    totalWeight += weight
   })
 
   let random = getRandomNumber(totalWeight)
 
   for (let i = 0; i < weights.length; i++) {
     random -= weights[i]
+    
     if (random < 0) return i
   } 
 }
@@ -699,33 +641,7 @@ const createDna = (_layers, _variant) => {
   return randNum.join(DNA_DELIMITER);
 };
 
-const createDnaOG = (_layers) => {
-  let randNum = [];
-  _layers.forEach((layer) => {
-    var totalWeight = 0;
-    layer.elements.forEach((element) => {
-      totalWeight += element.weight;
-    });
-    // number between 0 - totalWeight
-    let random = Math.floor(Math.random() * totalWeight);
-    for (var i = 0; i < layer.elements.length; i++) {
-      // subtract the current weight from the random weight until we reach a sub zero value.
-      random -= layer.elements[i].weight;
-      if (random < 0) {
-        return randNum.push(
-          `${layer.elements[i].id}:${layer.elements[i].filename}${
-            layer.bypassDNA ? "?bypassDNA=true" : ""
-          }`
-        );
-      }
-    }
-  });
-  return randNum.join(DNA_DELIMITER);
-};
-
-const writeMetaData = (_data) => {
-  fs.writeFileSync(`${buildDir}/json/_metadata.json`, _data);
-};
+const writeMetaData = (filename, _data) => fs.writeFileSync(`${buildDir}/json/${filename}.json`, JSON.stringify(_data, null, 2))
 
 const sortedMetadata = () => {
   let files = fs.readdirSync(`${buildDir}/json`);
@@ -736,6 +652,7 @@ const sortedMetadata = () => {
     const filename = Number(str.split('.').slice(0, -1).join('.'));
     return filenames.push(filename);
   })
+
   filenames.sort(function(a, b) {
     return a - b;
   });
@@ -744,69 +661,59 @@ const sortedMetadata = () => {
     if (!isNaN(filenames[i])) {
       let rawFile = fs.readFileSync(`${basePath}/build/json/${filenames[i]}.json`);
       let data = JSON.parse(rawFile);
-      fs.writeFileSync(`${basePath}/build/json/${data.id}.json`, JSON.stringify(data, null, 2));
+      writeMetaData(data.id, data)
       allMetadata.push(data);
     } 
   }
-  fs.writeFileSync(`${buildDir}/json/_metadata.json`, JSON.stringify(allMetadata, null, 2));
-  console.log(`Ordered all items numerically in _metadata.json. Saved in ${basePath}/build/json`);
+
+  writeMetaData(singleJsonName, allMetadata)
+  console.log(`Ordered all items numerically in ${singleJsonName}.json. Saved in ${basePath}/build/json`);
 }
 
 const saveMetaDataSingleFile = (_editionCount) => {
   let metadata = metadataList.find((meta) => meta.id == _editionCount);
   debugLogs ? console.log(`Writing metadata for ${_editionCount}: ${JSON.stringify(metadata)}`) : null;
-  fs.writeFileSync(`${buildDir}/json/${_editionCount}.json`, JSON.stringify(metadata, null, 2));
+  writeMetaData(_editionCount, metadata)
 };
 
-function shuffle(array) {
+const shuffle = (array) => {
   let currentIndex = array.length,
     randomIndex;
+
   while (currentIndex != 0) {
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex],
-      array[currentIndex],
-    ];
+    [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
   }
+
   return array;
 }
 
 const traitCount = (_layers) => {
   let count = new Object();
-  _layers.forEach((layer) => {
-    layer.elements.forEach((element) => {
-      count[element.name] = element.weight;
-    });
-  });
+  _layers.forEach((layer) => layer.elements.forEach((element) => count[element.name] = element.weight));
   return count;
 };
 
 const allLayersOrders = () => {
   let layerList = [];
+
   for (let i = 0; i < layerConfigurations.length; i++) {
-    const layers = layersSetup(
-      layerConfigurations[i].layersOrder
-    );
-    
-    layers.forEach((layer) => {
-      return layerList.push(layer);
-    });
-  };
+    const layers = layersSetup(layerConfigurations[i].layersOrder);
+    layers.forEach((layer) => layerList.push(layer))
+  }
+
   return layerList;
 }
 
 const allLayerSizes = () => {
   let layerList = new Object();
+
   for (let i = 0; i < layerConfigurations.length; i++) {
-    const layers = layersSetup(
-      layerConfigurations[i].layersOrder
-    );
-    
-    layers.forEach((layer) => {
-      layerList[layer.name] = layerConfigurations[i].growEditionSizeTo
-    });
-  };
+    const layers = layersSetup(layerConfigurations[i].layersOrder)
+    layers.forEach((layer) => layerList[layer.name] = layerConfigurations[i].growEditionSizeTo)
+  }
+
   return layerList;
 }
 
@@ -837,10 +744,12 @@ const startCreating = async () => {
     let allLayers = allLayersOrders();
     allTraitsCount = traitCount(allLayers);
   }
+
   let layerConfigIndex = 0;
   let editionCount = 1;
   let failedCount = 0;
   let abstractedIndexes = [];
+
   for (
     let i = network == NETWORK.sol ? 0 : 1;
     i <= layerConfigurations[layerConfigurations.length - 1].growEditionSizeTo;
@@ -848,24 +757,19 @@ const startCreating = async () => {
   ) {
     abstractedIndexes.push(i);
   }
-  if (shuffleLayerConfigurations) {
-    abstractedIndexes = shuffle(abstractedIndexes);
-  }
-  debugLogs
-    ? console.log("Editions left to create: ", abstractedIndexes)
-    : null;
+
+  if (shuffleLayerConfigurations) abstractedIndexes = shuffle(abstractedIndexes)
+  debugLogs ? console.log("Editions left to create: ", abstractedIndexes) : null
+
   while (layerConfigIndex < layerConfigurations.length) {
-    while (
-      editionCount <= layerConfigurations[layerConfigIndex].growEditionSizeTo
-    ) {
+
+    while (editionCount <= layerConfigurations[layerConfigIndex].growEditionSizeTo) {
       const layers = layersSetup(layerConfigurations[layerConfigIndex].layersOrder)
 
       let currentEdition = editionCount - 1;
       let remainingInLayersOrder = layerConfigurations[layerConfigIndex].growEditionSizeTo - currentEdition;
       
-      if (exactWeight && namedWeight) {
-        throw new Error(`namedWeight and exactWeight can't be used together. Please mark one or both as false in config.js`);
-      }
+      if (exactWeight && namedWeight) throw new Error(`namedWeight and exactWeight can't be used together. Please mark one or both as false in config.js`)
 
       let newVariant = createVariation(layerVariations);
       let variant = newVariant.split(':').pop();
@@ -877,12 +781,7 @@ const startCreating = async () => {
       // if (isDnaUnique(dnaList, newDna)) {
       if (duplicatesAllowed) {
         let results = constructLayerToDna(newDna, layers, layerConfigIndex);
-
-        if (exactWeight) {
-          results.forEach((layer) => {
-            allTraitsCount[layer.selectedElement.name]--;
-          })
-        }
+        if (exactWeight) results.forEach((layer) => allTraitsCount[layer.selectedElement.name]--)
 
         let loadedElements = [];
 
@@ -895,66 +794,37 @@ const startCreating = async () => {
           debugLogs ? console.log("Clearing canvas") : null;
           ctx.clearRect(0, 0, format.width, format.height);
           if (gif.export) {
-            hashlipsGiffer = new HashlipsGiffer(
-              canvas,
-              ctx,
-              `${buildDir}/gifs/${abstractedIndexes[0]}.gif`,
-              gif.repeat,
-              gif.quality,
-              gif.delay
-            );
-            hashlipsGiffer.start();
+            hashlipsGiffer = new HashlipsGiffer(canvas, ctx, `${buildDir}/gifs/${abstractedIndexes[0]}.gif`, gif.repeat, gif.quality, gif.delay)
+            hashlipsGiffer.start()
           }
-          if (background.generate) {
-            drawBackground();
-          }
+
+          if (background.generate) drawBackground()
           let variantMetadata = false
+
           renderObjectArray.forEach((renderObject, index) => {
             Object.keys(renderObject.layer).forEach(key => {
-              if (renderObject.layer.layerVariations !== undefined) {
-                variantMetadata = true;
-              }
+              if (renderObject.layer.layerVariations !== undefined) variantMetadata = true
             })
             
-            drawElement(
-              renderObject,
-              index,
-              layerConfigurations[layerConfigIndex].layersOrder.length
-            );
-            if (gif.export) {
-              hashlipsGiffer.add();
-            }
+            drawElement(renderObject, index, layerConfigurations[layerConfigIndex].layersOrder.length)
+            if (gif.export) hashlipsGiffer.add()
           });
-          extraAttributes.forEach((attr) => {
-            attributesList.push(attr);
-          });
-          if (variantMetadata) {
-            attributesList.push({
-              trait_type: variantName,
-              value: variant,
-            });
-          }
+
+          extraAttributes.forEach((attr) => attributesList.push(attr))
+          if (variantMetadata) attributesList.push({ trait_type: variantName, value: variant })
+
           if (enableStats) {
-            addStats();
-            statList.forEach((stat) => {
-              attributesList.push(stat);
-            });
-            statList = [];
+            addStats()
+            statList.forEach((stat) => attributesList.push(stat))
+            statList = []
           }
-          if (gif.export) {
-            hashlipsGiffer.stop();
-          }
-          debugLogs
-            ? console.log("Editions left to create: ", abstractedIndexes)
-            : null;
-          saveImage(abstractedIndexes[0]+resumeNum);
-          addMetadata(newDna, abstractedIndexes[0]+resumeNum);
-          saveMetaDataSingleFile(abstractedIndexes[0]+resumeNum);
-          console.log(
-            `Created edition: ${abstractedIndexes[0]+resumeNum}, with DNA: ${sha1(
-              newDna
-            )}`
-          );
+
+          if (gif.export) hashlipsGiffer.stop()
+          debugLogs ? console.log("Editions left to create: ", abstractedIndexes) : null
+          saveImage(abstractedIndexes[0] + resumeNum)
+          addMetadata(newDna, abstractedIndexes[0] + resumeNum)
+          saveMetaDataSingleFile(abstractedIndexes[0] + resumeNum)
+          console.log(`Created edition: ${abstractedIndexes[0]+resumeNum}, with DNA: ${sha1(newDna)}`)
         });
         dnaList.add(filterDNAOptions(newDna));
         editionCount++;
@@ -972,7 +842,7 @@ const startCreating = async () => {
     }
     layerConfigIndex++;
   }
-  // writeMetaData(JSON.stringify(metadataList, null, 2));
+  
   sortedMetadata();
 };
 

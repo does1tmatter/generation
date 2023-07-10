@@ -3,7 +3,7 @@ const isLocal = typeof process.pkg === 'undefined';
 const basePath = isLocal ? process.cwd() : path.dirname(process.execPath);
 const dir = `${basePath}/build/json`;
 
-const traitToFind = 'Eagle'
+const traitToFind = 'Straitjacket'
 
 const tokens = []
 const files = fs.readdirSync(dir)
@@ -15,4 +15,8 @@ files.forEach(file => {
   })
 })
 
-console.log(JSON.stringify(tokens, null, 2))
+if (tokens.length) {
+  console.log(JSON.stringify(tokens, null, 2))
+} else {
+  console.log(`No tokens with trait ${traitToFind} found`)
+}
