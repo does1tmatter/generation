@@ -46,7 +46,7 @@ const DNA_DELIMITER = "-";
 const HashlipsGiffer = require(`${basePath}/modules/HashlipsGiffer.js`);
 const oldDna = `${basePath}/build_old/_oldDna.json`;
 const singleJsonName = '_metadata'
-const traitToInvestigate = 'Straitjacket'
+const traitToInvestigate = null
 
 let hashlipsGiffer = null;
 let allTraitsCount;
