@@ -3,7 +3,7 @@ const isLocal = typeof process.pkg === 'undefined';
 const basePath = isLocal ? process.cwd() : path.dirname(process.execPath);
 const dir = `${basePath}/build/json`;
 
-const traitToFind = 'Straitjacket'
+const traitToFind = 'Lion'
 
 const tokens = []
 const files = fs.readdirSync(dir)
