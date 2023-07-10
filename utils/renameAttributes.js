@@ -6,8 +6,25 @@ const basePath = isLocal ? process.cwd() : path.dirname(process.execPath);
 const fs = require('fs');
 const chalk = require('chalk')
 
-let valueBefore = ["3", "Layer", "Gola", "Dope Soda", "Lion Slippers"] //Enter old values here
-let valueAfter = [":3", ":|", "Gõla", "Dope", "Lion"] //Enter new values here
+//Enter old values here
+let valueBefore = [
+  "3",
+  "Layer",
+  "Gola",
+  "Dope Soda",
+  "Lion Slippers",
+  "E Cig"
+]
+
+//Enter new values here
+let valueAfter = [
+  ":3",
+  ":|",
+  "Gõla",
+  "Dope",
+  "Lion",
+  "E-Cig"
+]
 let traitTypeBefore = [] //Enter old trait_types here
 let traitTypeAfter = [] //Enter new trait_trypes here
 
