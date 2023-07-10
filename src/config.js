@@ -261,7 +261,7 @@ const exceptions = {
     Hippie: ['Slippers'],
     Barbarian: ['Slippers', 'Masks', 'Hair'],
     Santa: ['Headwear', 'Hair', 'Beard', 'Slippers'],
-    Straitjacket: ['Beard', 'Dudes', 'Clothes', 'Eyes', 'Eyewear', 'Hair', 'Headwear', 'Masks', 'Mouth', 'Nose', 'Pants', 'Shirt', 'Slippers'],
+    Straitjacket: ['Beard', 'Dudes', 'Eyes', 'Eyewear', 'Hair', 'Headwear', 'Masks', 'Mouth', 'Nose', 'Pants', 'Shirt', 'Slippers'],
     King: ['Headwear', 'Hair'], // Body XL-XXXL
     Footballer: ['Headwear', 'Hair', 'Beard'], // Body XL-XXXL
     'Onion Red': ['Eyewear', 'Headwear', 'Hair', 'Eyes', 'Masks', 'Nose', 'Mouth', 'Beard', 'Slippers'],
