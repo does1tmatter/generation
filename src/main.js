@@ -428,7 +428,7 @@ const createNamedLayer = (layer, traitRules) => {
           selectedTrait = selectNamedTrait(layer.elements)
           if (debugExceptions && value.includes(layer.elements[selectedTrait].name)) console.log(`Picked ${chalk.yellow(layer.elements[selectedTrait].name)}`)
         }
-        if (debugExceptions) console.log(chalk.bold(`Final pick: ${chalk.green(layer.elements[selectedTrait].name)}`))
+        if (debugExceptions) console.log(chalk.bold(`Final pick: ${layer.elements[selectedTrait].name.includes('None') ? chalk.green('None') : chalk.green(layer.elements[selectedTrait].name)}`))
       }
     })
   }
@@ -450,7 +450,7 @@ const createNamedLayer = (layer, traitRules) => {
             if (debugExceptions && value.includes(layer.required.elements[requiredTrait].name)) console.log(chalk.bold(`Picked ${chalk.yellow(layer.required.elements[requiredTrait].name)}`))
           }
           
-          if (debugExceptions) console.log(chalk.bold(`Final pick: ${chalk.green(layer.required.elements[requiredTrait].name)}`))
+          if (debugExceptions) console.log(chalk.bold(`Final pick: ${layer.required.elements[requiredTrait].name.includes('None') ? chalk.green('None') : chalk.green(layer.required.elements[requiredTrait].name)}`))
         }
       })
     }
