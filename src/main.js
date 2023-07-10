@@ -1,10 +1,8 @@
 const basePath = process.cwd();
-const { NETWORK } = require(`${basePath}/constants/network.js`);
-const fs = require("fs");
-const sha1 = require(`${basePath}/node_modules/sha1`);
 const { createCanvas, loadImage } = require(`${basePath}/node_modules/canvas`);
-const buildDir = `${basePath}/build`;
-const layersDir = `${basePath}/layers`;
+const { NETWORK } = require(`${basePath}/constants/network.js`);
+const sha1 = require(`${basePath}/node_modules/sha1`);
+const fs = require("fs");
 const {
   format,
   baseUri,
@@ -37,20 +35,25 @@ const {
   debugExceptions
 } = require(`${basePath}/src/config.js`);
 const chalk = require('chalk')
+const HashlipsGiffer = require(`${basePath}/modules/HashlipsGiffer.js`);
 const renameAttributes = require('../utils/renameAttributes.js').default
 const removeAttributes = require('../utils/removeAttributes.js').default
+
 const canvas = createCanvas(format.width, format.height);
 const ctx = canvas.getContext("2d");
 ctx.imageSmoothingEnabled = format.smoothing;
+
+const buildDir = `${basePath}/build`;
+const layersDir = `${basePath}/layers`;
+const DNA_DELIMITER = "-";
+const singleJsonName = '_metadata'
+const traitToInvestigate = null
+const oldDna = `${basePath}/build_old/_oldDna.json`;
+
 var metadataList = [];
 var attributesList = [];
 var statList = [];
 var dnaList = new Set();
-const DNA_DELIMITER = "-";
-const HashlipsGiffer = require(`${basePath}/modules/HashlipsGiffer.js`);
-const oldDna = `${basePath}/build_old/_oldDna.json`;
-const singleJsonName = '_metadata'
-const traitToInvestigate = null
 
 let hashlipsGiffer = null;
 let allTraitsCount;
