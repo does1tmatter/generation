@@ -258,6 +258,9 @@ const exceptions = {
     // background
     Dumpster: ['Mascots'], 
 
+    // couches
+    Stage: ['Mascots'],
+
     // clothes
     Onion: ['Eyewear', 'Headwear', 'Hair', 'Eyes', 'Masks', 'Nose', 'Mouth', 'Beard', 'Slippers'],
     Assasson: ['Eyewear', 'Headwear', 'Hair', 'Masks', 'Nose', 'Mouth', 'Slippers', 'Beard'],
