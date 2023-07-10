@@ -253,8 +253,7 @@ const exceptions = {
     // Headwear
     Spartan: ['Toucan', 'Pinocchio', 'Happy Merchant', 'Trunk'],
     Nord: ['Toucan'],
-    Lion: ['Ronikbot', 'Elegant'],
-    Wolf: ['Ronikbot', 'Elegant', 'Happy Merchant'],
+    Wolf: ['Happy Merchant'],
   },
   traitToLayer: {
     // background

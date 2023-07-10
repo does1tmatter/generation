@@ -1,5 +1,6 @@
 const basePath = process.cwd();
 const { NETWORK } = require(`${basePath}/constants/network.js`);
+const chalk = require('chalk')
 const fs = require("fs");
 
 const {
@@ -16,35 +17,28 @@ let data = JSON.parse(rawdata);
 
 data.forEach((item) => {
   if (network == NETWORK.sol) {
-    item.name = `${namePrefix} #${item.edition}`;
+    item.name = `${namePrefix} #${item.id}`;
     item.description = description;
     item.creators = solanaMetadata.creators;
   } else {
-    item.name = `${namePrefix} #${item.edition}`;
+    item.name = `${namePrefix} #${item.id}`;
     item.description = description;
-    item.image = `${baseUri}/${item.edition}.png`;
+    item.image = `${baseUri}/${item.id}.png`;
   }
   fs.writeFileSync(
-    `${basePath}/build/json/${item.edition}.json`,
+    `${basePath}/build/json/${item.id}.json`,
     JSON.stringify(item, null, 2)
   );
 });
 
-fs.writeFileSync(
-  `${basePath}/build/json/_metadata.json`,
-  JSON.stringify(data, null, 2)
-);
+fs.writeFileSync(`${basePath}/build/json/_metadata.json`, JSON.stringify(data, null, 2));
 
 if (network == NETWORK.sol) {
-  console.log(`Updated description for images to ===> ${description}`);
-  console.log(`Updated name prefix for images to ===> ${namePrefix}`);
-  console.log(
-    `Updated creators for images to ===> ${JSON.stringify(
-      solanaMetadata.creators
-    )}`
-  );
+  console.log(chalk.bold(`Updated description for images to ==> ${chalk.green(description)}`))
+  console.log(chalk.bold(`Updated name prefix for images to ==> ${chalk.green(namePrefix)}`))
+  console.log(chalk.bold(`Updated creators for images to ==> ${chalk.green(solanaMetadata.creators)}`))
 } else {
-  console.log(`Updated baseUri for images to ===> ${baseUri}`);
-  console.log(`Updated description for images to ===> ${description}`);
-  console.log(`Updated name prefix for images to ===> ${namePrefix}`);
+  console.log(chalk.bold(`Updated baseUri for images to       ->   ${chalk.green(baseUri)}`))
+  console.log(chalk.bold(`Updated description for images to   ->   ${chalk.green(description)}`))
+  console.log(chalk.bold(`Updated name prefix for images to   ->   ${chalk.green(namePrefix)}`))
 }
