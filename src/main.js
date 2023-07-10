@@ -81,24 +81,19 @@ const buildSetup = () => {
 
 const getRarityWeight = (_str) => {
   let nameWithoutExtension = _str.slice(0, -4);
-  if (namedWeight) {
-    return String(nameWithoutExtension.split(rarityDelimiter).pop())
-  } else {
-    return Number(nameWithoutExtension.split(rarityDelimiter).pop())
-  }
+
+  return namedWeight ? String(nameWithoutExtension.split(rarityDelimiter).pop()) : Number(nameWithoutExtension.split(rarityDelimiter).pop())
 }
 
 function cleanDna(_str) {
-  const withoutOptions = removeQueryStrings(_str);
-  var dna = Number(withoutOptions.split(":").shift().split('_').pop());
-  return dna;
+  const withoutOptions = removeQueryStrings(_str)
+  return Number(withoutOptions.split(":").shift().split('_').pop())
 }
 
 const cleanName = (_str) => {
-  let nameWithoutExtension = _str.slice(0, -4);
-  var nameWithoutWeight = nameWithoutExtension.split(rarityDelimiter).shift();
-  return nameWithoutWeight;
-};
+  let nameWithoutExtension = _str.slice(0, -4)
+  return nameWithoutExtension.split(rarityDelimiter).shift()
+}
 
 const getElements = (path) => fs
   .readdirSync(path)
