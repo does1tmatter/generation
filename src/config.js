@@ -46,7 +46,7 @@ const solanaMetadata = {
 // If you have selected Solana then the collection starts from 0 automatically
 const layerConfigurations = [
   {
-    growEditionSizeTo: 150,
+    growEditionSizeTo: 10,
     layersOrder: [
       { name: "Background" },
       { name: "Couches" },
@@ -181,6 +181,12 @@ const importOldDna = false;
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 const allowDuplicates = false;
 
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+* If `debugExceptions` equals true will log to terminal:
+* `X not compatible with Y. Repicking...` and `Picked Z`
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+const debugExceptions = false
+
 const exceptions = {
   traitToTrait: {
     // background
@@ -201,8 +207,9 @@ const exceptions = {
     // Eyes
     Spider: ['Aviator', 'Dope', 'Franklin', 'Karen', 'Open', 'Professional', 'Thug Life', 'Tyson'],
     Frog: ['Aviator', 'Dope', 'Franklin', 'Professional', 'Thug Life', 'Tyson'],
+    'Neutral Eyes': ['Venice'],
     // Eyewear
-    Aviator: ['Dreadlocks'],
+    Aviator: ['Dreadlocks', 'Chef'],
     Dope: ['Chef', 'Froggy', 'Dreadlocks'],
     Franklin: ['Chef', 'Dreadlocks'],
     Tyson: ['Chef'],
@@ -211,11 +218,11 @@ const exceptions = {
     Karen: ['Chef', 'Dreadlocks'],
     'Thug Life': ['Chef', 'Dreadlocks'],
     // Mouth
-    Tusks: ['Froggy', 'Dreadlocks'],
-    Eagle: ['Spartan', 'Ottoman', 'Frog', 'Medusa', 'Nord', 'Wolf', 'Ushanka', 'Clown', 'Dreadlocks'],
+    Tusks: ['Froggy', 'Dreadlocks', 'Ushanka', 'Lion', 'Wolf'],
+    Eagle: ['Spartan', 'Ottoman', 'Frog', 'Medusa', 'Nord', 'Wolf', 'Lion', 'Ushanka', 'Clown', 'Dreadlocks'],
     'Lions Roar': ['Clown', 'Pinocchio'],
-    'Frog Tongue': ['Dreadlocks'],
-    'Snakes Tongue': ['Dreadlocks'],
+    'Frog Tongue': ['Dreadlocks', 'Wolf', 'Lion', 'Ushanka'],
+    'Snakes Tongue': ['Dreadlocks', 'Wolf', 'Lion', 'Ushanka'],
     // Headwear
     Spartan: ['Toucan', 'Pinocchio', 'Merchant', 'Trunk', 'Aviator', 'Dope', 'Franklin', 'Karen', 'Open', 'Nerd', 'Professional', 'Thug Life'],
     Nord: ['Aviator', 'Dope', 'Franklin', 'Karen', 'Open', 'Nerd', 'Professional', 'Thug Life', 'Toucan'],
@@ -225,26 +232,22 @@ const exceptions = {
     Astro: ['Toucan', 'Pinocchio', 'Merchant', 'Trunk', 'Aviator', 'Dope', 'Franklin', 'Karen', 'Open', 'Nerd', 'Professional', 'Thug Life', 'Frog Tongue', 'Snakes Tongue', 'Eagle', 'Tusks', 'Toucan', 'Pinocchio', 'Happy Merchant'],
     // beard
     Alt: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks', 'Froggy', 'Alternative'],
-    Caterpillar: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks', 'Froggy', 'Dreadlocks', 'Medusa', 'Ushanka', 'Alternative'],
-    Elegant: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks', 'Froggy', 'Medusa', 'Ushanka', 'Dreadlocks', 'Alternative'],
-    Full: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks', 'Froggy', 'Alternative'],
+    Caterpillar: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks', 'Froggy', 'Dreadlocks', 'Medusa', 'Ushanka', 'Lion', 'Wolf', 'Alternative'],
+    Elegant: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks', 'Froggy', 'Medusa', 'Ushanka', 'Lion', 'Wolf', 'Dreadlocks', 'Alternative'],
+    Full: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks', 'Froggy', 'Ushanka', 'Lion', 'Wolf', 'Alternative'],
     Heisenberg: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks'],
-    Hobo: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks', 'Froggy', 'Medusa', 'Ushanka', 'Dreadlocks', 'Alternative'],
-    KiBi: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks', 'Froggy', 'Alternative'],
+    Hobo: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks', 'Froggy', 'Medusa', 'Ushanka', 'Lion', 'Wolf', 'Dreadlocks', 'Alternative'],
+    KiBi: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks', 'Froggy', 'Ushanka', 'Lion', 'Wolf', 'Alternative'],
     Latin: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks'],
     Mutton: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks'],
     Plumber: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks'],
-    Ronikbot: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks', 'Froggy', 'Medusa', 'Ushanka', 'Dreadlocks', 'Alternative'],
+    Ronikbot: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks', 'Froggy', 'Medusa', 'Ushanka', 'Lion', 'Wolf', 'Dreadlocks', 'Alternative'],
     Tingles: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks', 'Froggy', 'Alternative'],
     Tom: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks'],
     Twirl: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks'],
-    Viking: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks', 'Froggy', 'Alternative'],
-    Wizard: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks', 'Dreadlocks', 'Ushanka', 'Alternative'],
-    'Van Dyke': ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks', 'Froggy', 'Ushanka', 'Dreadlocks', 'Alternative'],
-    // dudes
-    'M 2': ['Pinocchio'],
-    'M 4': ['Pinocchio'],
-    'M 5': ['Pinocchio'],
+    Viking: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks', 'Froggy', 'Ushanka', 'Lion', 'Wolf', 'Alternative'],
+    Wizard: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks', 'Dreadlocks', 'Ushanka', 'Lion', 'Wolf', 'Alternative'],
+    'Van Dyke': ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks', 'Froggy', 'Ushanka', 'Lion', 'Wolf', 'Dreadlocks', 'Alternative'],
     // Pants
     Belt: ['Coat'],
   },
@@ -352,5 +355,6 @@ module.exports = {
   enableStats,
   statBlocks,
   extraAttributes,
-  exceptions
+  exceptions,
+  debugExceptions
 };

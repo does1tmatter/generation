@@ -33,8 +33,12 @@ const {
   statBlocks,
   extraAttributes,
   exceptions,
-  rarityTable
+  rarityTable,
+  debugExceptions
 } = require(`${basePath}/src/config.js`);
+const chalk = require('chalk')
+const renameAttributes = require('../utils/renameAttributes.js').default
+const removeAttributes = require('../utils/removeAttributes.js').default
 const canvas = createCanvas(format.width, format.height);
 const ctx = canvas.getContext("2d");
 ctx.imageSmoothingEnabled = format.smoothing;
@@ -57,7 +61,7 @@ const buildSetup = () => {
     fs.mkdirSync(`${buildDir}/json`);
     fs.mkdirSync(`${buildDir}/images`);
   } else {
-    fs.rmdirSync(buildDir, { recursive: true } );
+    fs.rmSync(buildDir, { recursive: true } );
     fs.mkdirSync(buildDir);
     fs.mkdirSync(`${buildDir}/json`);
     fs.mkdirSync(`${buildDir}/images`);
@@ -413,14 +417,16 @@ const createNamedLayer = (layer, traitRules) => {
   }
 
   if (traitRules?.size) {
+
     traitRules.forEach((value, key) => {
-      value.forEach(val => {
-        if (val === layer.elements[selectedTrait].name) {
-          while (val === layer.elements[selectedTrait].name) {
-            selectedTrait = selectNamedTrait(layer.elements)
-          }
+      if (value.includes(layer.elements[selectedTrait].name)) {
+        while (value.includes(layer.elements[selectedTrait].name)) {
+          if (debugExceptions) console.log(chalk.bold(`${chalk.green(key)} not compatible with ${chalk.red(layer.elements[selectedTrait].name)}. ${chalk.italic('Repicking...')}`))
+          selectedTrait = selectNamedTrait(layer.elements)
+          if (debugExceptions && value.includes(layer.elements[selectedTrait].name)) console.log(`Picked ${chalk.yellow(layer.elements[selectedTrait].name)}`)
         }
-      })
+        if (debugExceptions) console.log(chalk.bold(`Final pick: ${chalk.green(layer.elements[selectedTrait].name)}`))
+      }
     })
   }
 
@@ -432,14 +438,17 @@ const createNamedLayer = (layer, traitRules) => {
     }
 
     if (traitRules?.size) {
+      
       traitRules.forEach((value, key) => {
-        value.forEach(val => {
-          if (val === layer.required.elements[requiredTrait].name) {
-            while (val === layer.required.elements[requiredTrait].name) {
-              requiredTrait = selectNamedTrait(layer.required.elements)
-            }
+        if (value.includes(layer.required.elements[requiredTrait].name)) {
+          while (value.includes(layer.required.elements[requiredTrait].name)) {
+            if (debugExceptions) console.log(chalk.bold(`${chalk.green(key)} not compatible with ${chalk.red(layer.required.elements[requiredTrait].name)}. ${chalk.italic('Repicking...')}`))
+            requiredTrait = selectNamedTrait(layer.required.elements)
+            if (debugExceptions && value.includes(layer.required.elements[requiredTrait].name)) console.log(chalk.bold(`Picked ${chalk.yellow(layer.required.elements[requiredTrait].name)}`))
           }
-        })
+          
+          if (debugExceptions) console.log(chalk.bold(`Final pick: ${chalk.green(layer.required.elements[requiredTrait].name)}`))
+        }
       })
     }
 
@@ -453,11 +462,11 @@ const createNamedLayer = (layer, traitRules) => {
   }
 }
 
-const selectNamedTrait = (elements) => {
+const selectNamedTrait = (elements, debug, debugCount) => {
   const weights = []
   let totalWeight = 0
 
-  elements.forEach(ele => {
+  elements.forEach((ele) => {
     const weight = rarityTable[ele.weight]
 
     weights.push(weight)
@@ -639,6 +648,7 @@ const createDna = (_layers, _variant) => {
 const writeMetaData = (filename, _data) => fs.writeFileSync(`${buildDir}/json/${filename}.json`, JSON.stringify(_data, null, 2))
 
 const sortedMetadata = () => {
+  console.log(chalk.bold.italic(`\nSorting metadata and cleaning up json's. Please wait...`))
   let files = fs.readdirSync(`${buildDir}/json`);
   let filenames  = [];
   let allMetadata = [];
@@ -662,7 +672,10 @@ const sortedMetadata = () => {
   }
 
   writeMetaData(singleJsonName, allMetadata)
-  console.log(`Ordered all items numerically in ${singleJsonName}.json. Saved in ${basePath}/build/json`);
+  renameAttributes()
+  removeAttributes()
+  console.log(chalk.bold(`Ordered all items numerically in ${chalk.green(`${singleJsonName}.json`)}. \n${chalk.italic(`Saved in ${chalk.green(`${basePath}\\build\\json`)}`)}`))
+  console.log(chalk.bold.greenBright(`\nGeneration completed! ${allMetadata.length} pieces generated successfully`))
 }
 
 const saveMetaDataSingleFile = (_editionCount) => {
@@ -819,18 +832,16 @@ const startCreating = async () => {
           saveImage(abstractedIndexes[0] + resumeNum)
           addMetadata(newDna, abstractedIndexes[0] + resumeNum)
           saveMetaDataSingleFile(abstractedIndexes[0] + resumeNum)
-          console.log(`Created edition: ${abstractedIndexes[0]+resumeNum}, with DNA: ${sha1(newDna)}`)
+          console.log(chalk.dim(`${chalk.bold(`Created edition: ${abstractedIndexes[0]+resumeNum}`)} ${chalk.italic(`DNA: ${sha1(newDna)}`)}`))
         });
         dnaList.add(filterDNAOptions(newDna));
         editionCount++;
         abstractedIndexes.shift();
       } else {
-        console.log("DNA exists!");
+        console.log(chalk.bold.red("DNA exists!"));
         failedCount++;
         if (failedCount >= uniqueDnaTorrance) {
-          console.log(
-            `You need more layers or elements to grow your edition to ${layerConfigurations[layerConfigIndex].growEditionSizeTo} artworks!`
-          );
+          console.log(chalk.bgRed(`You need more layers or elements to grow your edition to ${layerConfigurations[layerConfigIndex].growEditionSizeTo} artworks!`));
           process.exit();
         }
       }
