@@ -335,7 +335,7 @@ const filterTraitExceptions = (layers) => {
 
     if (exceptions.traitToLayer[traitName] && !traitName.includes('None')) {
       if (traitToInvestigate && traitName === traitToInvestigate) {
-        console.log(`--------------------------- found ${traitToInvestigate}`)
+        console.log(`--------------------------- ${traitToInvestigate} picked`)
         console.log(exceptions.traitToLayer[traitName])
         console.log(`---------------------------`)
       }
