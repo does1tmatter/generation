@@ -190,13 +190,15 @@ const debugExceptions = false
 const exceptions = {
   traitToTrait: {
     // background
-    Prison: ['Pig', 'Playboy', 'Fatcraft Blue', 'Fatcraft Red'],
     Hospital: ['Pig'],
+    Prison: ['Pig', 'Playboy', 'Fatcraft Blue', 'Fatcraft Red'],
 
     // Couches
     Gnomes: ['Bear', 'Boxer', 'Croc', 'Fat Cat', 'Fat Michael', 'Fat Ninja', 'Fighter', 'Grim', 'Pink Man', 'PIPEPE', 'Polar Bear', 'Swamp Man', 'Tie Bear'],
     Holograph: ['Washing Stick', 'Lightsaber', 'Stacked Cups'],
     Tree: ['Washing Stick', 'Lightsaber'],
+    Pig: ['Bear'],
+    'Cotton Candy': ['Dope Soda', 'Chicken'],
     'Living Room': ['Playboy', 'Fatcraft Blue', 'Fatcraft Red'],
 
     // Eyes
