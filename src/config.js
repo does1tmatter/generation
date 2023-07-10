@@ -192,68 +192,72 @@ const exceptions = {
     // background
     Prison: ['Pig', 'Playboy', 'Fatcraft Blue', 'Fatcraft Red'],
     Hospital: ['Pig'],
-    // misc
-    Lightsaber: ['Tree', 'Hologram'],
-    'Washing Stick': ['Tree', 'Hologram'],
+
     // Couches
     Gnomes: ['Bear', 'Boxer', 'Croc', 'Fat Cat', 'Fat Michael', 'Fat Ninja', 'Fighter', 'Grim', 'Pink Man', 'PIPEPE', 'Polar Bear', 'Swamp Man', 'Tie Bear'],
     Holograph: ['Washing Stick', 'Lightsaber', 'Stacked Cups'],
     Tree: ['Washing Stick', 'Lightsaber'],
     'Living Room': ['Playboy', 'Fatcraft Blue', 'Fatcraft Red'],
+
+    // Eyes
+    Spider: ['Aviator', 'Dope', 'Franklin', 'Karen', 'Open', 'Professional', 'Thug Life', 'Tyson'],
+    Frog: ['Aviator', 'Dope', 'Franklin', 'Professional', 'Thug Life', 'Tyson', 'Eagle'],
+    'Neutral Eyes': ['Venice'],
+
     // Clothes
     FMNT: ['Aviator', 'Dope', 'Franklin', 'Karen', 'Nerd', 'Open', 'Professional'],
     'Bard Blue': ['Magic Wand'],
     'Bard Red': ['Magic Wand'],
-    // Eyes
-    Spider: ['Aviator', 'Dope', 'Franklin', 'Karen', 'Open', 'Professional', 'Thug Life', 'Tyson'],
-    Frog: ['Aviator', 'Dope', 'Franklin', 'Professional', 'Thug Life', 'Tyson'],
-    'Neutral Eyes': ['Venice'],
+
+    // Pants
+    Belt: ['Coat'],
+
     // Eyewear
-    Aviator: ['Dreadlocks', 'Chef'],
-    Dope: ['Chef', 'Froggy', 'Dreadlocks'],
-    Franklin: ['Chef', 'Dreadlocks'],
+    Aviator: ['Dreadlocks', 'Chef', 'Spartan', 'Nord'],
+    Dope: ['Chef', 'Froggy', 'Dreadlocks', 'Spartan', 'Nord'],
+    Franklin: ['Chef', 'Dreadlocks', 'Spartan', 'Nord'],
     Tyson: ['Chef'],
     Monocle: ['Chef'],
-    Open: ['Chef'],
-    Karen: ['Chef', 'Dreadlocks'],
-    'Thug Life': ['Chef', 'Dreadlocks'],
+    Open: ['Chef', 'Spartan', 'Nord'],
+    Karen: ['Chef', 'Dreadlocks', 'Spartan', 'Nord'],
+    Nerd: ['Astro', 'Spartan', 'Nord'],
+    Professional: ['Spartan', 'Nord'],
+    'Thug Life': ['Chef', 'Dreadlocks', 'Spartan', 'Nord'],
+
+    // Masks
+    Astro: ['Toucan', 'Pinocchio', 'Happy Merchant', 'Trunk', 'Frog Tongue', 'Snakes Tongue', 'Eagle', 'Tusks'],
+    
     // Mouth
     Tusks: ['Froggy', 'Dreadlocks', 'Ushanka', 'Lion', 'Wolf'],
-    Eagle: ['Spartan', 'Ottoman', 'Frog', 'Medusa', 'Nord', 'Wolf', 'Lion', 'Ushanka', 'Clown', 'Dreadlocks'],
+    Eagle: ['Spartan', 'Ottoman', 'Medusa', 'Nord', 'Wolf', 'Lion', 'Ushanka', 'Clown', 'Dreadlocks'],
     'Lions Roar': ['Clown', 'Pinocchio'],
     'Frog Tongue': ['Dreadlocks', 'Wolf', 'Lion', 'Ushanka'],
     'Snakes Tongue': ['Dreadlocks', 'Wolf', 'Lion', 'Ushanka'],
+    'Dollar Bill': ['Dreadlocks', 'Wolf', 'Lion', 'Ushanka'],
+
+    // beard
+    Alt: ['Froggy', 'Alternative'],
+    Caterpillar: ['Froggy', 'Dreadlocks', 'Medusa', 'Ushanka', 'Lion', 'Wolf', 'Alternative'],
+    Elegant: ['Froggy', 'Medusa', 'Ushanka', 'Lion', 'Wolf', 'Dreadlocks', 'Alternative'],
+    Full: ['Froggy', 'Dreadlocks', 'Ushanka', 'Lion', 'Wolf', 'Alternative'],
+    Hobo: ['Froggy', 'Medusa', 'Ushanka', 'Lion', 'Wolf', 'Dreadlocks', 'Alternative'],
+    KiBi: ['Froggy', 'Ushanka', 'Lion', 'Wolf', 'Alternative'],
+    Ronikbot: ['Froggy', 'Medusa', 'Ushanka', 'Lion', 'Wolf', 'Dreadlocks', 'Alternative'],
+    Tingles: ['Froggy', 'Alternative'],
+    Viking: ['Froggy', 'Dreadlocks', 'Ushanka', 'Lion', 'Wolf', 'Alternative'],
+    Wizard: ['Dreadlocks', 'Ushanka', 'Lion', 'Wolf', 'Alternative'],
+    'Van Dyke': ['Froggy', 'Ushanka', 'Lion', 'Wolf', 'Dreadlocks', 'Alternative'],
+
     // Headwear
-    Spartan: ['Toucan', 'Pinocchio', 'Merchant', 'Trunk', 'Aviator', 'Dope', 'Franklin', 'Karen', 'Open', 'Nerd', 'Professional', 'Thug Life'],
-    Nord: ['Aviator', 'Dope', 'Franklin', 'Karen', 'Open', 'Nerd', 'Professional', 'Thug Life', 'Toucan'],
+    Spartan: ['Toucan', 'Pinocchio', 'Happy Merchant', 'Trunk'],
+    Nord: ['Toucan'],
     Lion: ['Ronikbot', 'Elegant'],
     Wolf: ['Ronikbot', 'Elegant', 'Happy Merchant'],
-    // Masks
-    Astro: ['Toucan', 'Pinocchio', 'Merchant', 'Trunk', 'Aviator', 'Dope', 'Franklin', 'Karen', 'Open', 'Nerd', 'Professional', 'Thug Life', 'Frog Tongue', 'Snakes Tongue', 'Eagle', 'Tusks', 'Toucan', 'Pinocchio', 'Happy Merchant'],
-    // beard
-    Alt: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks', 'Froggy', 'Alternative'],
-    Caterpillar: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks', 'Froggy', 'Dreadlocks', 'Medusa', 'Ushanka', 'Lion', 'Wolf', 'Alternative'],
-    Elegant: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks', 'Froggy', 'Medusa', 'Ushanka', 'Lion', 'Wolf', 'Dreadlocks', 'Alternative'],
-    Full: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks', 'Froggy', 'Ushanka', 'Lion', 'Wolf', 'Alternative'],
-    Heisenberg: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks'],
-    Hobo: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks', 'Froggy', 'Medusa', 'Ushanka', 'Lion', 'Wolf', 'Dreadlocks', 'Alternative'],
-    KiBi: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks', 'Froggy', 'Ushanka', 'Lion', 'Wolf', 'Alternative'],
-    Latin: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks'],
-    Mutton: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks'],
-    Plumber: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks'],
-    Ronikbot: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks', 'Froggy', 'Medusa', 'Ushanka', 'Lion', 'Wolf', 'Dreadlocks', 'Alternative'],
-    Tingles: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks', 'Froggy', 'Alternative'],
-    Tom: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks'],
-    Twirl: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks'],
-    Viking: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks', 'Froggy', 'Ushanka', 'Lion', 'Wolf', 'Alternative'],
-    Wizard: ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks', 'Dreadlocks', 'Ushanka', 'Lion', 'Wolf', 'Alternative'],
-    'Van Dyke': ['Snakes Tongue', 'Lions Roar', 'Frog Tongue', 'Eagle', 'Dollar Bill', 'Tusks', 'Froggy', 'Ushanka', 'Lion', 'Wolf', 'Dreadlocks', 'Alternative'],
-    // Pants
-    Belt: ['Coat'],
   },
   traitToLayer: {
     // background
     Dumpster: ['Mascots'], 
+
     // clothes
     Onion: ['Eyewear', 'Headwear', 'Hair', 'Eyes', 'Masks', 'Nose', 'Mouth', 'Beard', 'Slippers'],
     Assasson: ['Eyewear', 'Headwear', 'Hair', 'Masks', 'Nose', 'Mouth', 'Slippers', 'Beard'],
@@ -276,17 +280,16 @@ const exceptions = {
     'Elf Red': ['Headwear', 'Hair', 'Masks'],
     'Bard Blue': ['Slippers', 'Food'],
     'Bard Red': ['Slippers', 'Food'],
-    // nose
-    Pinocchio: ['Beard'],
-    Toucan: ['Mouth', 'Masks', 'Beard'],
-    Trunk: ['Beard'],
+
+    // misc    
+    'Stacked Cups': ['Food'],
+
     // headwear
     Ottoman: ['Eyewear', 'Beard'],
     Party: ['Eyewear'],
     Spartan: ['Beard'],
     Nord: ['Beard'],
-    // misc    
-    'Stacked Cups': ['Food'],
+
     // Masks
     Astro: ['Headwear', 'Eyewear', 'Hair', 'Beard'],
     Knight: ['Headwear', 'Eyewear', 'Hair', 'Beard', 'Nose', 'Mouth', 'Eyes'],
@@ -296,13 +299,15 @@ const exceptions = {
     'Greek Marble': ['Headwear', 'Eyewear', 'Hair', 'Beard', 'Nose', 'Mouth', 'Eyes'],
     'Plague Doctor': ['Headwear', 'Eyewear', 'Hair', 'Beard', 'Nose', 'Mouth', 'Eyes'],
     'Space Soldier': ['Headwear', 'Eyewear', 'Hair', 'Beard', 'Nose', 'Mouth', 'Eyes'],
+
     // mouth
     Eagle: ['Nose', 'Masks', 'Beard'], 
     Tusks: ['Beard'], 
     'Snakes Tongue': ['Beard'],
     'Lions Roar': ['Beard'],
     'Frog Tongue': ['Beard'],
-    'Dollar Bill': ['Beard'], 
+    'Dollar Bill': ['Beard'],
+
     // hair
     Afro: ['Masks'],
     Alternative: ['Masks'],
@@ -321,6 +326,11 @@ const exceptions = {
     'Air Force Pilot': ['Masks'],
     'Big Afro': ['Masks'],
     'Strong Fighter': ['Masks'],
+
+    // nose
+    Pinocchio: ['Beard'],
+    Toucan: ['Mouth', 'Masks', 'Beard'],
+    Trunk: ['Beard'],
   }
 }
 
