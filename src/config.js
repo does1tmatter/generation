@@ -46,7 +46,7 @@ const solanaMetadata = {
 // If you have selected Solana then the collection starts from 0 automatically
 const layerConfigurations = [
   {
-    growEditionSizeTo: 50,
+    growEditionSizeTo: 10,
     type: 'M',
     layersOrder: [
       { name: "Background" },
@@ -68,7 +68,7 @@ const layerConfigurations = [
     ]
   },
   {
-    growEditionSizeTo: 100,
+    growEditionSizeTo: 20,
     type: 'L',
     layersOrder: [
       { name: "Background" },
@@ -90,7 +90,7 @@ const layerConfigurations = [
     ]
   },
   {
-    growEditionSizeTo: 150,
+    growEditionSizeTo: 30,
     type: 'XL',
     layersOrder: [
       { name: "Background" },
@@ -112,7 +112,7 @@ const layerConfigurations = [
     ]
   },
   {
-    growEditionSizeTo: 200,
+    growEditionSizeTo: 40,
     type: 'XXL',
     layersOrder: [
       { name: "Background" },
@@ -134,7 +134,7 @@ const layerConfigurations = [
     ]
   },
   {
-    growEditionSizeTo: 250,
+    growEditionSizeTo: 50,
     type: 'XXXL',
     layersOrder: [
       { name: "Background" },
@@ -233,7 +233,8 @@ const rarityTable = {
   Rare: 40,
   Epic: 30,
   Legendary: 20,
-  Mythic: 10
+  Mythic: 10,
+  Empty: 600
 }
 
 const layerVariations = [
@@ -300,6 +301,8 @@ const exceptions = {
 
     // Clothes
     FMNT: ['Aviator', 'Dope', 'Franklin', 'Karen', 'Nerd', 'Open', 'Professional'],
+    Santa: ['Lions Roar'],
+    Footballer: ['Lions Roar'],
     'Bard Blue': ['Magic Wand'],
     'Bard Red': ['Magic Wand'],
 
