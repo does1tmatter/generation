@@ -46,7 +46,7 @@ const solanaMetadata = {
 // If you have selected Solana then the collection starts from 0 automatically
 const layerConfigurations = [
   {
-    growEditionSizeTo: 30,
+    growEditionSizeTo: 50,
     type: 'M',
     layersOrder: [
       { name: "Background" },
@@ -68,7 +68,7 @@ const layerConfigurations = [
     ]
   },
   {
-    growEditionSizeTo: 60,
+    growEditionSizeTo: 100,
     type: 'L',
     layersOrder: [
       { name: "Background" },
@@ -90,7 +90,7 @@ const layerConfigurations = [
     ]
   },
   {
-    growEditionSizeTo: 90,
+    growEditionSizeTo: 150,
     type: 'XL',
     layersOrder: [
       { name: "Background" },
@@ -112,7 +112,7 @@ const layerConfigurations = [
     ]
   },
   {
-    growEditionSizeTo: 120,
+    growEditionSizeTo: 200,
     type: 'XXL',
     layersOrder: [
       { name: "Background" },
@@ -134,7 +134,7 @@ const layerConfigurations = [
     ]
   },
   {
-    growEditionSizeTo: 150,
+    growEditionSizeTo: 250,
     type: 'XXXL',
     layersOrder: [
       { name: "Background" },
@@ -282,6 +282,8 @@ const exceptions = {
     // background
     Hospital: ['Pig'],
     Prison: ['Pig', 'Playboy', 'Fatcraft Blue', 'Fatcraft Red'],
+    Diner: ['Cardboard', 'Wave'],
+    Bedroom: ['Stacked Cups', 'Pig'],
 
     // Couches
     Gnomes: ['Bear', 'Boxer', 'Croc', 'Fat Cat', 'Fat Michael', 'Fat Ninja', 'Fighter', 'Grim', 'Pink Man', 'PIPEPE', 'Polar Bear', 'Swamp Man', 'Tie Bear'],
@@ -364,8 +366,8 @@ const exceptions = {
     Barbarian: ['Slippers', 'Masks', 'Hair'],
     Santa: ['Headwear', 'Hair', 'Beard', 'Slippers'],
     Straitjacket: ['Beard', 'Dudes', 'Eyes', 'Eyewear', 'Hair', 'Headwear', 'Masks', 'Mouth', 'Nose', 'Pants', 'Shirts', 'Slippers'],
-    King: ['Headwear', 'Hair'], // Body XL-XXXL
-    Footballer: ['Headwear', 'Hair', 'Beard'], // Body XL-XXXL
+    King: ['Headwear', 'Hair', 'Masks'], // Body XL-XXXL
+    Footballer: ['Headwear', 'Hair', 'Masks', 'Beard'], // Body XL-XXXL
     'Red Onion': ['Eyewear', 'Headwear', 'Hair', 'Eyes', 'Masks', 'Nose', 'Mouth', 'Beard', 'Slippers'],
     'Cartie Blue': ['Headwear', 'Hair', 'Masks'],
     'Cartie Red': ['Headwear', 'Hair', 'Masks'],
