@@ -52,7 +52,7 @@ const layerConfigurations = [
       { name: "Couches" },
       { name: "Dudes" },
       { name: "Eyes" },
-      { name: "Clothes", or: { name: 'Pants', with: 'Shirt' }},
+      { name: "Clothes", or: { name: 'Pants', with: 'Shirts' }},
       { name: "Mascots" },
       { name: "Misc" },
       { name: "Slippers" },
@@ -227,12 +227,12 @@ const exceptions = {
     'Thug Life': ['Chef', 'Dreadlocks', 'Spartan', 'Nord'],
 
     // Masks
-    Astro: ['Toucan', 'Pinocchio', 'Happy Merchant', 'Trunk', 'Frog Tongue', 'Snakes Tongue', 'Eagle', 'Tusks'],
+    Astro: ['Toucan', 'Liar', 'Happy Merchant', 'Trunk', 'Frog Tongue', 'Snakes Tongue', 'Eagle', 'Tusks'],
     
     // Mouth
     Tusks: ['Froggy', 'Dreadlocks', 'Ushanka', 'Lion', 'Wolf'],
     Eagle: ['Spartan', 'Ottoman', 'Medusa', 'Nord', 'Wolf', 'Lion', 'Ushanka', 'Clown', 'Dreadlocks'],
-    'Lions Roar': ['Clown', 'Pinocchio'],
+    'Lions Roar': ['Clown', 'Liar'],
     'Frog Tongue': ['Dreadlocks', 'Wolf', 'Lion', 'Ushanka'],
     'Snakes Tongue': ['Dreadlocks', 'Wolf', 'Lion', 'Ushanka'],
     'Dollar Bill': ['Dreadlocks', 'Wolf', 'Lion', 'Ushanka', 'Froggy'],
@@ -251,7 +251,7 @@ const exceptions = {
     'Van Dyke': ['Froggy', 'Ushanka', 'Lion', 'Wolf', 'Dreadlocks', 'Alternative'],
 
     // Headwear
-    Spartan: ['Toucan', 'Pinocchio', 'Happy Merchant', 'Trunk'],
+    Spartan: ['Toucan', 'Liar', 'Happy Merchant', 'Trunk'],
     Nord: ['Toucan'],
     Wolf: ['Happy Merchant'],
   },
@@ -273,7 +273,7 @@ const exceptions = {
     Hippie: ['Slippers'],
     Barbarian: ['Slippers', 'Masks', 'Hair'],
     Santa: ['Headwear', 'Hair', 'Beard', 'Slippers'],
-    Straitjacket: ['Beard', 'Dudes', 'Eyes', 'Eyewear', 'Hair', 'Headwear', 'Masks', 'Mouth', 'Nose', 'Pants', 'Shirt', 'Slippers'],
+    Straitjacket: ['Beard', 'Dudes', 'Eyes', 'Eyewear', 'Hair', 'Headwear', 'Masks', 'Mouth', 'Nose', 'Pants', 'Shirts', 'Slippers'],
     King: ['Headwear', 'Hair'], // Body XL-XXXL
     Footballer: ['Headwear', 'Hair', 'Beard'], // Body XL-XXXL
     'Onion Red': ['Eyewear', 'Headwear', 'Hair', 'Eyes', 'Masks', 'Nose', 'Mouth', 'Beard', 'Slippers'],
@@ -333,7 +333,7 @@ const exceptions = {
     'Strong Fighter': ['Masks'],
 
     // nose
-    Pinocchio: ['Beard'],
+    Liar: ['Beard'],
     Toucan: ['Mouth', 'Masks', 'Beard'],
     Trunk: ['Beard'],
   }
