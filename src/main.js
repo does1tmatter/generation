@@ -139,11 +139,16 @@ const layersSetup = (layersOrder, layerType) => layersOrder.map((layerObj, index
   }
 
   if (selective.length) {
-    const selectiveWeight = getLayerTotalWeight(selective[0].elements)
-    const layerWeight = getLayerTotalWeight(obj.elements)
+    let selectiveWeight, layerWeight
+    if (selective.length > 1) {
+      selectiveWeight = getLayerTotalWeight([...selective[0].elements, ...selective[1].elements])
+    } else {
+      selectiveWeight = getLayerTotalWeight(selective[0].elements) 
+    }
+    layerWeight = getLayerTotalWeight(obj.elements)
 
-    let random = getRandomNumber(selectiveWeight + layerWeight)
-    const weights = [selectiveWeight, layerWeight]
+    let random = getRandomNumber(1, (selectiveWeight * 2) + layerWeight)
+    const weights = [selectiveWeight * 2, layerWeight]
     
     for (let i = 0; i < weights.length; i++) {
       random -= weights[i]
@@ -168,14 +173,23 @@ const layersSetup = (layersOrder, layerType) => layersOrder.map((layerObj, index
 
 const getLayerTotalWeight = (elements) => {
   let totalWeight = 0
-  const rarityCount = getRarityCount(elements)
-
-  for (const key in rarityCount) {
-    totalWeight += rarityCount[key]
-  }
+  elements.forEach(element => {
+    totalWeight += rarityTable[element.weight]
+  })
   
   return Math.floor(totalWeight)
 }
+
+// const getLayerTotalWeight = (elements) => {
+//   let totalWeight = 0
+//   const rarityCount = getRarityCount(elements)
+
+//   for (const key in rarityCount) {
+//     totalWeight += rarityCount[key]
+//   }
+  
+//   return Math.floor(totalWeight)
+// }
 
 const saveImage = (_editionCount) => fs.writeFileSync(`${buildDir}/images/${_editionCount}.png`, canvas.toBuffer("image/png", { resolution: format.dpi }));
 
@@ -476,7 +490,7 @@ const selectNamedTrait = (elements, debug, debugCount) => {
     totalWeight += weight
   })
 
-  let random = getRandomNumber(totalWeight)
+  let random = getRandomNumber(1, totalWeight)
 
   for (let i = 0; i < weights.length; i++) {
     random -= weights[i]
@@ -485,7 +499,7 @@ const selectNamedTrait = (elements, debug, debugCount) => {
   } 
 }
 
-const getRandomNumber = (totalWeight) => Math.floor(Math.random() * totalWeight)
+const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min
 
 const getRarityCount = (layers) => {
   const rarity_config = {
@@ -495,6 +509,7 @@ const getRarityCount = (layers) => {
     Rare: { ranks: [1500, 3100] },
     Uncommon: { ranks: [3100, 5600] },
     Common: { ranks: [5600, 10000] },
+    Empty: { ranks: [10000, 20000] }
   };
   
   const rarityCount = {

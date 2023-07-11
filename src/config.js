@@ -63,7 +63,7 @@ const layerConfigurations = [
       { name: "Masks" },
       { name: "Mouth" },
       { name: "Beard" },
-      { name: "Hair", or: { name: 'Headwear' } },
+      { name: "Headwear", or: { name: 'Hair' } },
       { name: "Nose" },
     ]
   },
@@ -85,7 +85,7 @@ const layerConfigurations = [
       { name: "Masks" },
       { name: "Mouth" },
       { name: "Beard" },
-      { name: "Hair", or: { name: 'Headwear' } },
+      { name: "Headwear", or: { name: 'Hair' } },
       { name: "Nose" },
     ]
   },
@@ -107,7 +107,7 @@ const layerConfigurations = [
       { name: "Masks" },
       { name: "Mouth" },
       { name: "Beard" },
-      { name: "Hair", or: { name: 'Headwear' } },
+      { name: "Headwear", or: { name: 'Hair' } },
       { name: "Nose" },
     ]
   },
@@ -129,7 +129,7 @@ const layerConfigurations = [
       { name: "Masks" },
       { name: "Mouth" },
       { name: "Beard" },
-      { name: "Hair", or: { name: 'Headwear' } },
+      { name: "Headwear", or: { name: 'Hair' } },
       { name: "Nose" },
     ]
   },
@@ -151,7 +151,7 @@ const layerConfigurations = [
       { name: "Masks" },
       { name: "Mouth" },
       { name: "Beard" },
-      { name: "Hair", or: { name: 'Headwear' } },
+      { name: "Headwear", or: { name: 'Hair' } },
       { name: "Nose" },
     ]
   }
@@ -228,13 +228,13 @@ const preview_gif = {
 };
 
 const rarityTable = {
-  Common: 60,
-  Uncommon: 50,
-  Rare: 40,
-  Epic: 30,
-  Legendary: 20,
+  Common: 200,
+  Uncommon: 150,
+  Rare: 100,
+  Epic: 70,
+  Legendary: 30,
   Mythic: 10,
-  Empty: 600
+  Empty: 1000
 }
 
 const layerVariations = [

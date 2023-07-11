@@ -5,7 +5,14 @@ const isLocal = typeof process.pkg === 'undefined';
 const basePath = isLocal ? process.cwd() : path.dirname(process.execPath);
 const fs = require('fs');
 
-const { rarity_config } = require(`${basePath}/src/config.js`);
+const rarity_config = {
+  Mythic: { ranks: [0, 100] },
+  Legendary: { ranks: [100, 600] },
+  Epic: { ranks: [600, 1500] },
+  Rare: { ranks: [1500, 3100] },
+  Uncommon: { ranks: [3100, 5600] },
+  Common: { ranks: [5600, 10000] },
+};
 
 /* **********************
 ******** Options ********
