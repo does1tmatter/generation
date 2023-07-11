@@ -117,11 +117,11 @@ const getElements = (path) => fs
     }
   })
 
-const layersSetup = (layersOrder) => layersOrder.map((layerObj, index) => {
+const layersSetup = (layersOrder, layerType) => layersOrder.map((layerObj, index) => {
   const selective = []
   const obj = {
     id: index,
-    elements: getElements(`${layersDir}/${layerObj.name}/`),
+    elements: getElements(`${layersDir}/${layerType}/${layerObj.name}/`),
     name: layerObj.options?.displayName ?? layerObj.name,
     blend: layerObj.options?.blend ?? "source-over",
     opacity: layerObj.options?.opacity ?? 1,
@@ -131,10 +131,10 @@ const layersSetup = (layersOrder) => layersOrder.map((layerObj, index) => {
   }
 
   if (layerObj.or) {
-    selective.push({ name: layerObj.or.name, elements: getElements(`${layersDir}/${layerObj.or.name}/`) })
+    selective.push({ name: layerObj.or.name, elements: getElements(`${layersDir}/${layerType}/${layerObj.or.name}/`) })
 
     if (layerObj.or.with) {
-      selective.push({ name: layerObj.or.with, elements: getElements(`${layersDir}/${layerObj.or.with}/`) })
+      selective.push({ name: layerObj.or.with, elements: getElements(`${layersDir}/${layerType}/${layerObj.or.with}/`) })
     }
   }
 
@@ -710,7 +710,7 @@ const allLayersOrders = () => {
   let layerList = [];
 
   for (let i = 0; i < layerConfigurations.length; i++) {
-    const layers = layersSetup(layerConfigurations[i].layersOrder);
+    const layers = layersSetup(layerConfigurations[i].layersOrder, layerConfigurations[i].type);
     layers.forEach((layer) => layerList.push(layer))
   }
 
@@ -721,7 +721,7 @@ const allLayerSizes = () => {
   let layerList = new Object();
 
   for (let i = 0; i < layerConfigurations.length; i++) {
-    const layers = layersSetup(layerConfigurations[i].layersOrder)
+    const layers = layersSetup(layerConfigurations[i].layersOrder, layerConfigurations[i].type)
     layers.forEach((layer) => layerList[layer.name] = layerConfigurations[i].growEditionSizeTo)
   }
 
@@ -775,7 +775,7 @@ const startCreating = async () => {
   while (layerConfigIndex < layerConfigurations.length) {
 
     while (editionCount <= layerConfigurations[layerConfigIndex].growEditionSizeTo) {
-      const layers = layersSetup(layerConfigurations[layerConfigIndex].layersOrder)
+      const layers = layersSetup(layerConfigurations[layerConfigIndex].layersOrder, layerConfigurations[layerConfigIndex].type)
 
       let currentEdition = editionCount - 1;
       let remainingInLayersOrder = layerConfigurations[layerConfigIndex].growEditionSizeTo - currentEdition;
@@ -835,7 +835,7 @@ const startCreating = async () => {
           saveImage(abstractedIndexes[0] + resumeNum)
           addMetadata(newDna, abstractedIndexes[0] + resumeNum)
           saveMetaDataSingleFile(abstractedIndexes[0] + resumeNum)
-          console.log(chalk.dim(`${chalk.bold(`Created edition: ${abstractedIndexes[0]+resumeNum}`)} ${chalk.italic(`DNA: ${sha1(newDna)}`)}`))
+          console.log(chalk.dim(`${chalk.bold(`Created edition: ${abstractedIndexes[0]+resumeNum} (${abstractedIndexes.length - 1 > 0 ? `${abstractedIndexes.length - 1} left` : `last one`})`)} ${chalk.italic(`DNA: ${sha1(newDna)}`)}`))
         });
         dnaList.add(filterDNAOptions(newDna));
         editionCount++;

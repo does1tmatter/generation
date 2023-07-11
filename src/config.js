@@ -46,9 +46,99 @@ const solanaMetadata = {
 // If you have selected Solana then the collection starts from 0 automatically
 const layerConfigurations = [
   {
-    growEditionSizeTo: 100,
+    growEditionSizeTo: 3,
+    type: 'M',
     layersOrder: [
       { name: "Background" },
+      { name: "WOOP WOOP" },
+      { name: "Couches" },
+      { name: "Dudes" },
+      { name: "Eyes" },
+      { name: "Clothes", or: { name: 'Pants', with: 'Shirts' }},
+      { name: "Mascots" },
+      { name: "Misc" },
+      { name: "Slippers" },
+      { name: "Eyewear" },
+      { name: "Food" },
+      { name: "Masks" },
+      { name: "Mouth" },
+      { name: "Beard" },
+      { name: "Hair", or: { name: 'Headwear' } },
+      { name: "Nose" },
+    ]
+  },
+  {
+    growEditionSizeTo: 6,
+    type: 'L',
+    layersOrder: [
+      { name: "Background" },
+      { name: "WOOP WOOP" },
+      { name: "Couches" },
+      { name: "Dudes" },
+      { name: "Eyes" },
+      { name: "Clothes", or: { name: 'Pants', with: 'Shirts' }},
+      { name: "Mascots" },
+      { name: "Misc" },
+      { name: "Slippers" },
+      { name: "Eyewear" },
+      { name: "Food" },
+      { name: "Masks" },
+      { name: "Mouth" },
+      { name: "Beard" },
+      { name: "Hair", or: { name: 'Headwear' } },
+      { name: "Nose" },
+    ]
+  },
+  {
+    growEditionSizeTo: 9,
+    type: 'XL',
+    layersOrder: [
+      { name: "Background" },
+      { name: "WOOP WOOP" },
+      { name: "Couches" },
+      { name: "Dudes" },
+      { name: "Eyes" },
+      { name: "Clothes", or: { name: 'Pants', with: 'Shirts' }},
+      { name: "Mascots" },
+      { name: "Misc" },
+      { name: "Slippers" },
+      { name: "Eyewear" },
+      { name: "Food" },
+      { name: "Masks" },
+      { name: "Mouth" },
+      { name: "Beard" },
+      { name: "Hair", or: { name: 'Headwear' } },
+      { name: "Nose" },
+    ]
+  },
+  {
+    growEditionSizeTo: 12,
+    type: 'XXL',
+    layersOrder: [
+      { name: "Background" },
+      { name: "WOOP WOOP" },
+      { name: "Couches" },
+      { name: "Dudes" },
+      { name: "Eyes" },
+      { name: "Clothes", or: { name: 'Pants', with: 'Shirts' }},
+      { name: "Mascots" },
+      { name: "Misc" },
+      { name: "Slippers" },
+      { name: "Eyewear" },
+      { name: "Food" },
+      { name: "Masks" },
+      { name: "Mouth" },
+      { name: "Beard" },
+      { name: "Hair", or: { name: 'Headwear' } },
+      { name: "Nose" },
+    ]
+  },
+  {
+    growEditionSizeTo: 15,
+    type: 'XXXL',
+    layersOrder: [
+      { name: "Background" },
+      { name: "WOOP WOOP" },
       { name: "Couches" },
       { name: "Dudes" },
       { name: "Eyes" },
@@ -71,7 +161,7 @@ const enableStats = false;
 const statBlocks = [
 ];
 
-const shuffleLayerConfigurations = false;
+const shuffleLayerConfigurations = true;
 
 const debugLogs = false;
 
@@ -231,7 +321,7 @@ const exceptions = {
     
     // Mouth
     Tusks: ['Froggy', 'Dreadlocks', 'Ushanka', 'Lion', 'Wolf'],
-    Eagle: ['Spartan', 'Ottoman', 'Medusa', 'Nord', 'Wolf', 'Lion', 'Ushanka', 'Clown', 'Dreadlocks'],
+    Eagle: ['Spartan', 'Ottoman', 'Medusa', 'Nord', 'Wolf', 'Lion', 'Ushanka', 'Clown', 'Alternative', 'Dreadlocks'],
     'Lions Roar': ['Clown', 'Liar'],
     'Frog Tongue': ['Dreadlocks', 'Wolf', 'Lion', 'Ushanka'],
     'Snakes Tongue': ['Dreadlocks', 'Wolf', 'Lion', 'Ushanka'],
@@ -276,7 +366,7 @@ const exceptions = {
     Straitjacket: ['Beard', 'Dudes', 'Eyes', 'Eyewear', 'Hair', 'Headwear', 'Masks', 'Mouth', 'Nose', 'Pants', 'Shirts', 'Slippers'],
     King: ['Headwear', 'Hair'], // Body XL-XXXL
     Footballer: ['Headwear', 'Hair', 'Beard'], // Body XL-XXXL
-    'Onion Red': ['Eyewear', 'Headwear', 'Hair', 'Eyes', 'Masks', 'Nose', 'Mouth', 'Beard', 'Slippers'],
+    'Red Onion': ['Eyewear', 'Headwear', 'Hair', 'Eyes', 'Masks', 'Nose', 'Mouth', 'Beard', 'Slippers'],
     'Cartie Blue': ['Headwear', 'Hair', 'Masks'],
     'Cartie Red': ['Headwear', 'Hair', 'Masks'],
     'Cowboy Black': ['Headwear', 'Hair', 'Masks'],
