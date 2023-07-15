@@ -46,7 +46,7 @@ const solanaMetadata = {
 // If you have selected Solana then the collection starts from 0 automatically
 const layerConfigurations = [
   {
-    growEditionSizeTo: 10,
+    growEditionSizeTo: 2250,
     type: 'M',
     layersOrder: [
       { name: "Background" },
@@ -68,7 +68,7 @@ const layerConfigurations = [
     ]
   },
   {
-    growEditionSizeTo: 20,
+    growEditionSizeTo: 4000,
     type: 'L',
     layersOrder: [
       { name: "Background" },
@@ -90,7 +90,7 @@ const layerConfigurations = [
     ]
   },
   {
-    growEditionSizeTo: 30,
+    growEditionSizeTo: 5500,
     type: 'XL',
     layersOrder: [
       { name: "Background" },
@@ -112,7 +112,7 @@ const layerConfigurations = [
     ]
   },
   {
-    growEditionSizeTo: 40,
+    growEditionSizeTo: 6500,
     type: 'XXL',
     layersOrder: [
       { name: "Background" },
@@ -134,7 +134,7 @@ const layerConfigurations = [
     ]
   },
   {
-    growEditionSizeTo: 50,
+    growEditionSizeTo: 7000,
     type: 'XXXL',
     layersOrder: [
       { name: "Background" },
@@ -228,12 +228,12 @@ const preview_gif = {
 };
 
 const rarityTable = {
-  Common: 200,
+  Common: 180,
   Uncommon: 150,
-  Rare: 100,
-  Epic: 70,
-  Legendary: 30,
-  Mythic: 10,
+  Rare: 120,
+  Epic: 100,
+  Legendary: 80,
+  Mythic: 40,
   Empty: 1000
 }
 
@@ -290,7 +290,8 @@ const exceptions = {
     Gnomes: ['Bear', 'Boxer', 'Croc', 'Fat Cat', 'Fat Michael', 'Fat Ninja', 'Fighter', 'Grim', 'Pink Man', 'PIPEPE', 'Polar Bear', 'Swamp Man', 'Tie Bear'],
     Holograph: ['Washing Stick', 'Lightsaber', 'Stacked Cups'],
     Tree: ['Washing Stick', 'Lightsaber'],
-    Pig: ['Bear'],
+    Pig: ['Bear', 'Tie Bear', 'Croc'],
+    Wave: ['Stacked Cups'],
     'Cotton Candy': ['Dope Soda', 'Chicken'],
     'Living Room': ['Playboy', 'Fatcraft Blue', 'Fatcraft Red'],
 
@@ -341,8 +342,9 @@ const exceptions = {
     KiBi: ['Froggy', 'Ushanka', 'Lion', 'Wolf', 'Alternative'],
     Ronikbot: ['Froggy', 'Medusa', 'Ushanka', 'Lion', 'Wolf', 'Dreadlocks', 'Alternative'],
     Tingles: ['Froggy', 'Alternative'],
+    Toothbrush: ['Froggy'],
     Viking: ['Froggy', 'Dreadlocks', 'Ushanka', 'Lion', 'Wolf', 'Alternative'],
-    Wizard: ['Dreadlocks', 'Ushanka', 'Lion', 'Wolf', 'Alternative'],
+    Wizard: ['Froggy', 'Dreadlocks', 'Ushanka', 'Lion', 'Wolf', 'Alternative'],
     'Van Dyke': ['Froggy', 'Ushanka', 'Lion', 'Wolf', 'Dreadlocks', 'Alternative'],
 
     // Headwear

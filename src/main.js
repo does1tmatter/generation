@@ -147,8 +147,8 @@ const layersSetup = (layersOrder, layerType) => layersOrder.map((layerObj, index
     }
     layerWeight = getLayerTotalWeight(obj.elements)
 
-    let random = getRandomNumber(1, (selectiveWeight * 2) + layerWeight)
-    const weights = [selectiveWeight * 2, layerWeight]
+    let random = getRandomNumber(1, (selectiveWeight + 2500) + layerWeight)
+    const weights = [selectiveWeight + 2500, layerWeight]
     
     for (let i = 0; i < weights.length; i++) {
       random -= weights[i]
@@ -429,6 +429,12 @@ const createNamedLayer = (layer, traitRules) => {
   let requiredLayer = ''
   let selectedTrait = selectNamedTrait(layer.elements)
 
+  if (!layer.elements[selectedTrait]?.name) {
+    console.log(selectedTrait)
+    console.log(layer.name)
+    console.log(layer.elements)
+  }
+
   if (exceptions.traitToTrait[layer.elements[selectedTrait].name]) {
     traitRules.set(layer.elements[selectedTrait].name, exceptions.traitToTrait[layer.elements[selectedTrait].name])
   }
@@ -479,9 +485,10 @@ const createNamedLayer = (layer, traitRules) => {
   }
 }
 
-const selectNamedTrait = (elements, debug, debugCount) => {
+const selectNamedTrait = (elements) => {
   const weights = []
   let totalWeight = 0
+  let index = 0
 
   elements.forEach((ele) => {
     const weight = rarityTable[ele.weight]
@@ -492,11 +499,26 @@ const selectNamedTrait = (elements, debug, debugCount) => {
 
   let random = getRandomNumber(1, totalWeight)
 
-  for (let i = 0; i < weights.length; i++) {
-    random -= weights[i]
+  // for (let i = 0; i < weights.length; i++) {
+  //   random -= weights[i]
     
-    if (random < 0) return i
-  } 
+  //   if (random < 0) return i
+  //   if (i === weights.length) return i - 1
+  // } 
+
+  while (random > 0) {
+    random -= weights[index]
+
+    if (random > 0) {
+      if (index == weights.length - 1) {
+        index = 0
+      } else {
+        index++
+      }
+    }
+  }
+
+  return index
 }
 
 const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min
