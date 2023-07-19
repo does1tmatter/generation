@@ -281,17 +281,20 @@ const debugExceptions = false
 const exceptions = {
   traitToTrait: {
     // background
-    Hospital: ['Pig'],
-    Prison: ['Pig', 'Playboy', 'Fatcraft Blue', 'Fatcraft Red'],
-    Diner: ['Cardboard', 'Wave'],
+    Hospital: ['Pig', 'Wave', 'Octopus'],
+    Prison: ['Pig', 'Playboy', 'Fatcraft Blue', 'Fatcraft Red', 'Elephant', 'Fluffy Sheep', 'Wave', 'Octopus'],
+    Diner: ['Cardboard', 'Wave', 'Pig'],
     Bedroom: ['Stacked Cups', 'Pig'],
+    Dumpster: ['Wave', 'Pig'],
+    Kitchen: ['Holograph'],
 
     // Couches
     Gnomes: ['Bear', 'Boxer', 'Croc', 'Fat Cat', 'Fat Michael', 'Fat Ninja', 'Fighter', 'Grim', 'Pink Man', 'PIPEPE', 'Polar Bear', 'Swamp Man', 'Tie Bear'],
     Holograph: ['Washing Stick', 'Lightsaber', 'Stacked Cups'],
     Tree: ['Washing Stick', 'Lightsaber'],
-    Pig: ['Bear', 'Tie Bear', 'Croc'],
+    Pig: ['Bear', 'Tie Bear', 'Croc', 'Stacked Cups'],
     Wave: ['Stacked Cups'],
+    Rubik: ['Dope Soda', 'Burger'],
     'Cotton Candy': ['Dope Soda', 'Chicken'],
     'Living Room': ['Playboy', 'Fatcraft Blue', 'Fatcraft Red'],
 
@@ -302,10 +305,14 @@ const exceptions = {
 
     // Clothes
     FMNT: ['Aviator', 'Dope', 'Franklin', 'Karen', 'Nerd', 'Open', 'Professional'],
-    Santa: ['Lions Roar'],
-    Footballer: ['Lions Roar'],
-    'Bard Blue': ['Magic Wand'],
-    'Bard Red': ['Magic Wand'],
+    Santa: ['Lions Roar', 'Astro'],
+    Footballer: ['Lions Roar', 'Astro', 'Trunk'],
+    Pirate: ['Eagle'],
+    'Bard Blue': ['Magic Wand', 'Lions Roar'],
+    'Bard Red': ['Magic Wand', 'Lions Roar'],
+
+    // Mascots
+    'Fat Cat': ['Playboy'],
 
     // Pants
     Belt: ['Coat'],
@@ -323,12 +330,12 @@ const exceptions = {
     'Thug Life': ['Chef', 'Dreadlocks', 'Spartan', 'Nord'],
 
     // Masks
-    Astro: ['Toucan', 'Liar', 'Happy Merchant', 'Trunk', 'Frog Tongue', 'Snakes Tongue', 'Eagle', 'Tusks'],
+    Astro: ['Toucan', 'Liar', 'Happy Merchant', 'Trunk', 'Frog Tongue', 'Snakes Tongue', 'Eagle', 'Tusks', 'Dollar Bill', 'Pinocchio'],
     
     // Mouth
     Tusks: ['Froggy', 'Dreadlocks', 'Ushanka', 'Lion', 'Wolf'],
     Eagle: ['Spartan', 'Ottoman', 'Medusa', 'Nord', 'Wolf', 'Lion', 'Ushanka', 'Clown', 'Alternative', 'Dreadlocks'],
-    'Lions Roar': ['Clown', 'Liar'],
+    'Lions Roar': ['Clown', 'Liar', 'Pinocchio'],
     'Frog Tongue': ['Dreadlocks', 'Wolf', 'Lion', 'Ushanka'],
     'Snakes Tongue': ['Dreadlocks', 'Wolf', 'Lion', 'Ushanka'],
     'Dollar Bill': ['Dreadlocks', 'Wolf', 'Lion', 'Ushanka', 'Froggy'],
@@ -348,8 +355,8 @@ const exceptions = {
     'Van Dyke': ['Froggy', 'Ushanka', 'Lion', 'Wolf', 'Dreadlocks', 'Alternative'],
 
     // Headwear
-    Spartan: ['Toucan', 'Liar', 'Happy Merchant', 'Trunk'],
-    Nord: ['Toucan'],
+    Spartan: ['Toucan', 'Liar', 'Pinocchio', 'Happy Merchant', 'Trunk'],
+    Nord: ['Toucan', 'Pinocchio'],
     Wolf: ['Happy Merchant'],
   },
   traitToLayer: {
@@ -359,20 +366,22 @@ const exceptions = {
     // couches
     Stage: ['Mascots'],
     Pig: ['Food'],
+    Holograph: ['Food'],
 
     // clothes
     Onion: ['Eyewear', 'Headwear', 'Hair', 'Eyes', 'Masks', 'Nose', 'Mouth', 'Beard', 'Slippers'],
     Assasson: ['Eyewear', 'Headwear', 'Hair', 'Masks', 'Nose', 'Mouth', 'Slippers', 'Beard'],
-    Pirate: ['Headwear', 'Hair', 'Eyes', 'Masks', 'Beard', 'Slippers'],
+    Pirate: ['Headwear', 'Hair', 'Eyes', 'Masks', 'Beard', 'Slippers', 'Eyewear'],
     Ninja: ['Headwear', 'Eyewear', 'Hair', 'Masks', 'Nose', 'Mouth', 'Beard', 'Slippers'],
-    FMNT: ['Slippers', 'Eyewear'],
+    FMNT: ['Slippers', 'Eyewear', 'Masks'],
     Doctor: ['Slippers'],
     Hippie: ['Slippers'],
-    Barbarian: ['Slippers', 'Masks', 'Hair'],
-    Santa: ['Headwear', 'Hair', 'Beard', 'Slippers'],
+    Barbarian: ['Slippers', 'Masks', 'Hair', 'Eyewear', 'Headwear'],
+    Santa: ['Headwear', 'Hair', 'Beard', 'Slippers', 'Masks'],
     Straitjacket: ['Beard', 'Dudes', 'Eyes', 'Eyewear', 'Hair', 'Headwear', 'Masks', 'Mouth', 'Nose', 'Pants', 'Shirts', 'Slippers'],
     King: ['Headwear', 'Hair', 'Masks'],
-    Footballer: ['Headwear', 'Hair', 'Masks', 'Beard'],
+    Footballer: ['Headwear', 'Hair', 'Masks', 'Beard', 'Masks'],
+    Astronaut: ['Slippers'],
     'Red Onion': ['Eyewear', 'Headwear', 'Hair', 'Eyes', 'Masks', 'Nose', 'Mouth', 'Beard', 'Slippers'],
     'Cartie Blue': ['Headwear', 'Hair', 'Masks'],
     'Cartie Red': ['Headwear', 'Hair', 'Masks'],
@@ -431,6 +440,7 @@ const exceptions = {
 
     // nose
     Liar: ['Beard'],
+    Pinocchio: ['Beard'],
     Toucan: ['Mouth', 'Masks', 'Beard'],
     Trunk: ['Beard'],
   }
