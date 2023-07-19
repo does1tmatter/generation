@@ -456,6 +456,12 @@ const createNamedLayer = (layer, traitRules) => {
   if (layer.required) {
     let requiredTrait = selectNamedTrait(layer.required.elements)
 
+    if (!layer.required.elements[requiredTrait]?.name) {
+      console.log(requiredTrait)
+      console.log(layer.required.name)
+      console.log(layer.required.elements)
+    }
+
     if (exceptions.traitToTrait[layer.required.elements[requiredTrait].name]) {
       traitRules.set(layer.required.elements[requiredTrait].name, exceptions.traitToTrait[layer.required.elements[requiredTrait].name])
     }
